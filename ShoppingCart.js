@@ -155,7 +155,7 @@ class ShoppingList extends Component {
         let count = this.state.count;
         let str = null;
         if (count != 0) {
-            str = '，共' + count + '只喵';
+            str = '，共' + count + '只喵33';
         }
 
         return (
