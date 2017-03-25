@@ -155,31 +155,142 @@ class ShoppingList extends Component {
         let count = this.state.count;
         let str = null;
         if (count != 0) {
-            str = '，共' + count + '只喵33';
+            str = '，共' + count + '只喵';
         }
 
         return (
             <ScrollView style={{ marginTop: 10 }}>
                 {lists}
-                <Text style={styles.btn}>去结算{str}</Text>
+                <Text style={styles.btn} onPress={this.goCart.bind(this)}>去结算{str}</Text>
             </ScrollView>
         )
     }
 
     press(data) {
         this.setState({
-            count:this.state.count+1
+            count: this.state.count + 1
         });
+
+        AsyncStorage.setItem('xy-' + this.getGUID() + '-xy', JSON.stringify(data), function (err) {
+            if (err) {
+                alert(err)
+            }
+        })
+    }
+
+    getGUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        }).toUpperCase();
     }
 
     goCart() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'Cart',
+                component: Cart
+            })
+        }
+    }
 
+    componentDidMount() {
+        let _this = this;
+        AsyncStorage.getAllKeys(
+            function (err, key) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('ok:' + key.toString())
+                }
+
+                _this.setState({
+                    count: key.length
+                })
+            }
+        )
     }
 
 }
 
 
 class Cart extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            price: 0,
+            data: []
+        }
+    }
+
+    render() {
+
+        let data = this.state.data;
+        let price = this.state.price;
+        let list = [];
+        for (let i in data) {
+            price+=parseFloat(data[i].price);
+            list.push(
+                <View style={[styles.row,styles.list_item]} key={i}>
+                    <Text style={styles.list_item_desc}>{data[i].title}{data[i].desc}</Text>
+                    <Text style={styles.list_item_price}>价格：{data[i].price}</Text>
+                </View>
+            )
+        }
+        let num = null;
+        if(price){
+            num = '，共'+price.toFixed(2)+'元'
+        }
+
+        return (
+            <ScrollView style={{marginTop:20}}>
+                {list}
+                <Text style={styles.btn}>支付{num}</Text>
+                <Text style={styles.clear} onPress={this.clearCart.bind(this)}>清空购物车</Text>
+
+            </ScrollView>
+        )
+    }
+
+    componentDidMount(){
+        let _this = this;
+        AsyncStorage.getAllKeys(function (e,keys) {
+            if(e){
+                return
+            }
+            AsyncStorage.multiGet(keys,function (e,result) {
+                let arr=[];
+                for(let i in result){
+                    arr.push(JSON.parse(result[i][1]))
+                }
+                _this.setState({
+                    data:arr
+                })
+
+            })
+        })
+    }
+
+
+    clearCart(){
+        let _this =this;
+        AsyncStorage.clear(function(e){
+            if(!e){
+                _this.setState({
+                    price:0,
+                    data:null
+                })
+                alert('已经清空')
+            }
+        })
+        const {navigator} =this.props;
+        if (navigator) {
+            navigator.pop();
+        }
+    }
+
+
 }
 
 
