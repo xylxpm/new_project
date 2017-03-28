@@ -1,7 +1,7 @@
 /**
  * Sample React Native App
  * 购物车组件，使用AsyncStorage  api
- * 包括 模拟商品列表，添加至购物车，购物车结算，清空
+ * 包括 模拟商品列表，添加至购物车，购物车结算，清空；
  */
 
 import React, {Component} from 'react';
@@ -13,6 +13,7 @@ import {
     Image,
     ScrollView,
     AsyncStorage,
+
     View
 } from 'react-native';
 
@@ -161,7 +162,7 @@ class ShoppingList extends Component {
         return (
             <ScrollView style={{ marginTop: 10 }}>
                 {lists}
-                <Text style={styles.btn} onPress={this.goCart.bind(this)}>去结算{str}</Text>
+                <Text style={styles.btn} onPress={this.goCart.bind(this)} >去结算{str}</Text>
             </ScrollView>
         )
     }
@@ -230,17 +231,17 @@ class Cart extends Component {
         let price = this.state.price;
         let list = [];
         for (let i in data) {
-            price+=parseFloat(data[i].price);
+            price += parseFloat(data[i].price);
             list.push(
-                <View style={[styles.row,styles.list_item]} key={i}>
+                <View style={[styles.row,styles.list_item]} key={i} >
                     <Text style={styles.list_item_desc}>{data[i].title}{data[i].desc}</Text>
                     <Text style={styles.list_item_price}>价格：{data[i].price}</Text>
                 </View>
             )
         }
         let num = null;
-        if(price){
-            num = '，共'+price.toFixed(2)+'元'
+        if (price) {
+            num = '，共' + price.toFixed(2) + '元'
         }
 
         return (
@@ -253,19 +254,19 @@ class Cart extends Component {
         )
     }
 
-    componentDidMount(){
+    componentDidMount() {
         let _this = this;
-        AsyncStorage.getAllKeys(function (e,keys) {
-            if(e){
+        AsyncStorage.getAllKeys(function (e, keys) {
+            if (e) {
                 return
             }
-            AsyncStorage.multiGet(keys,function (e,result) {
-                let arr=[];
-                for(let i in result){
+            AsyncStorage.multiGet(keys, function (e, result) {
+                let arr = [];
+                for (let i in result) {
                     arr.push(JSON.parse(result[i][1]))
                 }
                 _this.setState({
-                    data:arr
+                    data: arr
                 })
 
             })
@@ -273,18 +274,20 @@ class Cart extends Component {
     }
 
 
-    clearCart(){
-        let _this =this;
-        AsyncStorage.clear(function(e){
-            if(!e){
+    clearCart() {
+        let _this = this;
+        AsyncStorage.clear(function (e) {
+            if (!e) {
                 _this.setState({
-                    price:0,
-                    data:null
+                    price: 0,
+                    data: null
                 })
                 alert('已经清空')
             }
         })
+        const {count} =this.props;
         const {navigator} =this.props;
+
         if (navigator) {
             navigator.pop();
         }

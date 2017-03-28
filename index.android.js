@@ -13,6 +13,9 @@ import {
     Image,
     TouchableOpacity,
     Navigator,
+    Platform,
+    BackAndroid,
+    ToastAndroid,
     ViewPagerAndroid
 } from 'react-native';
 
@@ -242,6 +245,7 @@ class WelcomeUI extends Component {
         }
     }
 
+
     move(delta) {
         var page = this.state.page + delta;
         if (page < 0) {
@@ -279,23 +283,52 @@ class WelcomeUI extends Component {
 
 
 class new_project extends Component {
+    componentWillMount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.addEventListener("handwareBackPress", this.onBackAndroid);
+        }
+    }
+
+    componentWillUnmount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.removeEventListener("handwareBackPress", this.onBackAndroid);
+        }
+    }
+
+    onBackAndroid = () => {
+        const navigator = this.refs.navigator;
+        const routers = navigator.getCurrentRoutes();
+        if (routers.length > 2) {
+            navigator.pop();
+            return true
+        } else {
+            if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+                return false;
+            }
+            this.lastBackPressed =Date.now();
+            ToastAndroid.show("再按一次退出应用",ToastAndroid.SHORT);
+            return true;
+        }
+    }
+
     render() {
         let defaultName = 'WelcomeUI';
         let defauleComponent = WelcomeUI;
         return (
             <Navigator
                 initialRoute={{name:defaultName,component:defauleComponent}}
+                ref='navigator'
                 configureScene={
-                (route)=>{
-                    return Navigator.SceneConfigs.FloatFromRight;
+                    (route)=>{
+                        return Navigator.SceneConfigs.FloatFromRight;
+                    }
                 }
-            }
                 renderScene={
-                (route,navigator)=>{
-                    let Component = route.component;
-                    return <Component {...route.param}  navigator={navigator}/>
+                    (route,navigator)=>{
+                        let Component = route.component;
+                        return <Component {...route.param}  navigator={navigator}/>
+                    }
                 }
-            }
 
             />
 
