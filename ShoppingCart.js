@@ -67,9 +67,6 @@ const Model = [
 ]
 
 export default class ShoppingCart extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     goBack = () => {
         const {navigator} =this.props;
@@ -188,10 +185,23 @@ class ShoppingList extends Component {
 
     goCart() {
         const {navigator} = this.props;
+        let _this = this;
         if (navigator) {
             navigator.push({
                 name: 'Cart',
-                component: Cart
+                component: Cart,
+                param:{
+                    /* 这里带上参数传给另一个组件 */
+                    fetchData:function () {
+                        AsyncStorage.clear(function (err) {
+                            if(!err){
+                                _this.setState({
+                                    count:0
+                                })
+                            }
+                        })
+                    }
+                }
             })
         }
     }
@@ -275,22 +285,27 @@ class Cart extends Component {
 
 
     clearCart() {
-        let _this = this;
-        AsyncStorage.clear(function (e) {
-            if (!e) {
-                _this.setState({
-                    price: 0,
-                    data: null
-                })
-                alert('已经清空')
-            }
-        })
-        const {count} =this.props;
-        const {navigator} =this.props;
 
+        if (this.props.fetchData) {
+            this.props.fetchData();
+        }
+        const { navigator } = this.props;
         if (navigator) {
             navigator.pop();
         }
+
+
+        // let _this = this;
+        // AsyncStorage.clear(function (e) {
+        //     if (!e) {
+        //         _this.setState({
+        //             price: 0,
+        //             data: null
+        //         })
+        //         alert('已经清空')
+        //     }
+        // })
+
     }
 
 
