@@ -13,6 +13,7 @@ import {
     Image,
     ScrollView,
     AsyncStorage,
+    AlertIOS,
     View
 } from 'react-native';
 
@@ -114,14 +115,12 @@ class ShoppingList extends Component {
                     <View style={styles.row} key={i}>
                         <Item title={Model[i].title}
                               pic={Model[i].pic}
-                              press={this.press.bind(this, Model[i]) }
 
                         ></Item>
 
 
                         <Item title={Model[parseInt(i) + 1].title}
                               pic={Model[parseInt(i) + 1].pic}
-                              press={this.press.bind(this, Model[parseInt(i) + 1]) }
                         ></Item>
 
 
@@ -137,26 +136,48 @@ class ShoppingList extends Component {
         return(
             <ScrollView style={{ marginTop: 10 }}>
                 {lists}
-                <Text  style={styles.btn}>去结算</Text>
-
-
+                <Text  style={styles.btn} onPress={this._click1.bind(this)}>弹框试试1</Text>
+                <Text  style={styles.btn} onPress={this._click2.bind(this)}>弹框试试2</Text>
             </ScrollView>
         )
     }
 
-    press(data){
-        // alert(data.pic)
+    _click1(){
+        AlertIOS.alert("提示","欢迎猫猫",[
+            {
+                text:'取消',
+                onPress:()=>{
+                    alert('取消')
+                }
+            },
+            {
+                text:'确定',
+                onPress:()=>{
+                    alert('确定')
+                }
+            }
+        ])
+    }
+    _click2(){
+        AlertIOS.prompt("提示","欢迎猫猫",[
+            {
+                text:'取消',
+                onPress:()=>{
+                    alert('取消')
+                }
+            },
+            {
+                text:'确定',
+                onPress:(text)=>{
+                    alert(text)
+                }
+            }
+        ])
     }
 
-    goCart(){
-
-    }
 
 }
 
-
-class Cart extends Component {
-}
 
 class new_project extends Component {
     constructor(props) {
