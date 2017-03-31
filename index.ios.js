@@ -138,6 +138,7 @@ class ShoppingList extends Component {
                 {lists}
                 <Text  style={styles.btn} onPress={this._click1.bind(this)}>弹框试试1</Text>
                 <Text  style={styles.btn} onPress={this._click2.bind(this)}>弹框试试2</Text>
+                <Text  style={styles.btn} onPress={this._click3.bind(this)}>日期选择</Text>
             </ScrollView>
         )
     }
@@ -174,7 +175,9 @@ class ShoppingList extends Component {
             }
         ])
     }
+    _click3(){
 
+    }
 
 }
 
@@ -254,7 +257,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         lineHeight: 24,
-        marginTop: 40,
+        marginTop: 10,
         fontSize: 18,
     },
 
