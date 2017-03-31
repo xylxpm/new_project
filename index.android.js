@@ -29,6 +29,7 @@ import Grid from './Grid.js';
 import TabNavigator from './TabNavigators.js';
 import SideMenu from './SideMenus.js';
 import ShoppingCart from './ShoppingCart.js';
+import DateTimePicker from './DateTimePicker.js';
 
 const PAGES = 5;
 const BGCOLOR = ['#fdc08e', '#fff6b9', '#99d1b7', '#dde5fe', '#f79273'];
@@ -122,6 +123,9 @@ class WelcomeUI extends Component {
                         <View style={{flexDirection:'row'}}>
                             <TouchableOpacity onPress={this._click8} style={styles.startupButton}>
                                 <Text style={styles.likeText}>ShoppingCart</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={this._click9} style={styles.startupButton}>
+                                <Text style={styles.likeText}>日期时间组件</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -235,6 +239,7 @@ class WelcomeUI extends Component {
             })
         }
     }
+
     _click8 = () => {
         const {navigator}=this.props;
         if (navigator) {
@@ -245,6 +250,15 @@ class WelcomeUI extends Component {
         }
     }
 
+    _click9 = () => {
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'DateTimePicker',
+                component: DateTimePicker
+            })
+        }
+    }
 
     move(delta) {
         var page = this.state.page + delta;
@@ -305,8 +319,8 @@ class new_project extends Component {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
                 return false;
             }
-            this.lastBackPressed =Date.now();
-            ToastAndroid.show("再按一次退出应用",ToastAndroid.SHORT);
+            this.lastBackPressed = Date.now();
+            ToastAndroid.show("再按一次退出应用", ToastAndroid.SHORT);
             return true;
         }
     }
