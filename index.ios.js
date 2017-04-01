@@ -14,10 +14,13 @@ import {
     ScrollView,
     AsyncStorage,
     AlertIOS,
+    Navigator,
+    DatePickerIOS,
     View
 } from 'react-native';
 
 import Dimensions from 'Dimensions';
+import DateIOS from './DateIOS.js';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -109,8 +112,6 @@ class ShoppingList extends Component {
         let lists=[];
         for(let i in Model){
             if (i % 2 === 0) {
-                //两个等号 ：不判断类型
-                //三个等号：判断类型
                 let row = (
                     <View style={styles.row} key={i}>
                         <Item title={Model[i].title}
@@ -122,14 +123,9 @@ class ShoppingList extends Component {
                         <Item title={Model[parseInt(i) + 1].title}
                               pic={Model[parseInt(i) + 1].pic}
                         ></Item>
-
-
                     </View>
-
-
                 );
                 lists.push(row);
-
             }
         }
 
@@ -176,7 +172,13 @@ class ShoppingList extends Component {
         ])
     }
     _click3(){
-
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'DateIOS',
+                component: DateIOS
+            })
+        }
     }
 
 }
@@ -194,17 +196,44 @@ class new_project extends Component {
         }
     }
 
-    render() {
-        return (
-            <View>
-                <Text onPress={this.goBack.bind(this)}>
-                    返回欢迎页
-                </Text>
-                <ShoppingList navigator={this.props.navigator} >
 
-                </ShoppingList>
-            </View>
-        )
+
+
+    render() {
+
+        let defaultName = 'ShoppingList';
+        let defauleComponent = ShoppingList;
+        return (
+            <Navigator
+                initialRoute={{name:defaultName,component:defauleComponent}}
+                ref='navigator'
+                configureScene={
+                    (route)=>{
+                        return Navigator.SceneConfigs.FloatFromRight;
+                    }
+                }
+                renderScene={
+                    (route,navigator)=>{
+                        let Component = route.component;
+                        return <Component {...route.param}  navigator={navigator}/>
+                    }
+                }
+
+            />
+
+        );
+
+
+        // return (
+        //     <View>
+        //         <Text onPress={this.goBack.bind(this)}>
+        //             返回欢迎页
+        //         </Text>
+        //         <ShoppingList navigator={this.props.navigator} >
+        //
+        //         </ShoppingList>
+        //     </View>
+        // )
     }
 }
 
