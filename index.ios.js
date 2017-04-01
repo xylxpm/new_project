@@ -21,6 +21,7 @@ import {
 
 import Dimensions from 'Dimensions';
 import DateIOS from './DateIOS.js';
+import ASIOS from  './ASIOS.js'
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -135,6 +136,7 @@ class ShoppingList extends Component {
                 <Text  style={styles.btn} onPress={this._click1.bind(this)}>弹框试试1</Text>
                 <Text  style={styles.btn} onPress={this._click2.bind(this)}>弹框试试2</Text>
                 <Text  style={styles.btn} onPress={this._click3.bind(this)}>日期选择</Text>
+                <Text  style={styles.btn} onPress={this._click4.bind(this)}>ActionSheetIOS</Text>
             </ScrollView>
         )
     }
@@ -177,6 +179,15 @@ class ShoppingList extends Component {
             navigator.push({
                 name: 'DateIOS',
                 component: DateIOS
+            })
+        }
+    }
+    _click4(){
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'ASIOS',
+                component: ASIOS
             })
         }
     }
