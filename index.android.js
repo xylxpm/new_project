@@ -31,6 +31,7 @@ import SideMenu from './SideMenus.js';
 import ShoppingCart from './ShoppingCart.js';
 import DateTimePicker from './DateTimePicker.js';
 import NetInfoRN from './NetInfoRN.js';
+import CameraRollAndroid from './CameraRollAndroid.js';
 
 const PAGES = 5;
 const BGCOLOR = ['#fdc08e', '#fff6b9', '#99d1b7', '#dde5fe', '#f79273'];
@@ -123,14 +124,17 @@ class WelcomeUI extends Component {
                         </View>
                         <View style={{flexDirection:'row'}}>
                             <TouchableOpacity onPress={this._click8} style={styles.startupButton}>
-                                <Text style={styles.likeText}>ShoppingCart</Text>
+                                <Text style={styles.likeText}>购物车</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this._click9} style={styles.startupButton}>
-                                <Text style={styles.likeText}>日期时间组件</Text>
+                                <Text style={styles.likeText}>日期时间</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={this._click10} style={styles.startupButton}>
                                 <Text style={styles.likeText}>网络请求</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={this._click11} style={styles.startupButton}>
+                                <Text style={styles.likeText}>图片api</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -266,6 +270,16 @@ class WelcomeUI extends Component {
     }
 
     _click10 = () => {
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'CameraRollAndroid',
+                component: CameraRollAndroid
+            })
+        }
+    }
+
+    _click11 = () => {
         const {navigator}=this.props;
         if (navigator) {
             navigator.push({

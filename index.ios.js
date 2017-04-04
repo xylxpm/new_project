@@ -21,7 +21,8 @@ import {
 
 import Dimensions from 'Dimensions';
 import DateIOS from './DateIOS.js';
-import ASIOS from  './ASIOS.js'
+import ASIOS from  './ASIOS.js';
+import CameraRollIOS from  './CameraRollIOS.js'
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -78,12 +79,12 @@ class Item extends Component {
     };
 
     static propTypes = {
-        pic:React.PropTypes.string.isRequired,
-        title:React.PropTypes.string.isRequired,
+        pic: React.PropTypes.string.isRequired,
+        title: React.PropTypes.string.isRequired,
     };
 
-    render(){
-        return(
+    render() {
+        return (
             <View style={styles.item}>
                 <TouchableOpacity onPress={this.props.press}>
                     <Image
@@ -100,18 +101,108 @@ class Item extends Component {
 
 }
 
+class BtnList extends Component {
+    render() {
+        return (
+            <ScrollView style={{ marginTop: 20 }}>
+                <Text style={styles.btn} onPress={this._click5.bind(this)}>猫咪列表</Text>
+                <Text style={styles.btn} onPress={this._click1.bind(this)}>弹框试试1</Text>
+                <Text style={styles.btn} onPress={this._click2.bind(this)}>弹框试试2</Text>
+                <Text style={styles.btn} onPress={this._click3.bind(this)}>日期选择</Text>
+                <Text style={styles.btn} onPress={this._click4.bind(this)}>ActionSheetIOS</Text>
+                <Text style={styles.btn} onPress={this._click6.bind(this)}>CameraRollIOS</Text>
+            </ScrollView>
+        )
+    }
 
-class ShoppingList extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            count:0
+    _click5() {
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'ShoppingList',
+                component: ShoppingList
+            })
         }
     }
 
-    render(){
-        let lists=[];
-        for(let i in Model){
+    _click6 (){
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'CameraRollIOS',
+                component: CameraRollIOS
+            })
+        }
+    }
+
+    _click1() {
+        AlertIOS.alert("提示", "欢迎猫猫", [
+            {
+                text: '取消',
+                onPress: () => {
+                    alert('取消')
+                }
+            },
+            {
+                text: '确定',
+                onPress: () => {
+                    alert('确定')
+                }
+            }
+        ])
+    }
+
+    _click2() {
+        AlertIOS.prompt("提示", "欢迎猫猫", [
+            {
+                text: '取消',
+                onPress: () => {
+                    alert('取消')
+                }
+            },
+            {
+                text: '确定',
+                onPress: (text) => {
+                    alert(text)
+                }
+            }
+        ])
+    }
+
+    _click3() {
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'DateIOS',
+                component: DateIOS
+            })
+        }
+    }
+
+    _click4() {
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'ASIOS',
+                component: ASIOS
+            })
+        }
+    }
+
+}
+
+
+class ShoppingList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 0
+        }
+    }
+
+    render() {
+        let lists = [];
+        for (let i in Model) {
             if (i % 2 === 0) {
                 let row = (
                     <View style={styles.row} key={i}>
@@ -130,68 +221,23 @@ class ShoppingList extends Component {
             }
         }
 
-        return(
+        return (
             <ScrollView style={{ marginTop: 20 }}>
                 {lists}
-                <Text  style={styles.btn} onPress={this._click1.bind(this)}>弹框试试1</Text>
-                <Text  style={styles.btn} onPress={this._click2.bind(this)}>弹框试试2</Text>
-                <Text  style={styles.btn} onPress={this._click3.bind(this)}>日期选择</Text>
-                <Text  style={styles.btn} onPress={this._click4.bind(this)}>ActionSheetIOS</Text>
+                <Text onPress={this.goBack.bind(this)}>
+                    返回欢迎页
+                </Text>
             </ScrollView>
         )
     }
 
-    _click1(){
-        AlertIOS.alert("提示","欢迎猫猫",[
-            {
-                text:'取消',
-                onPress:()=>{
-                    alert('取消')
-                }
-            },
-            {
-                text:'确定',
-                onPress:()=>{
-                    alert('确定')
-                }
-            }
-        ])
-    }
-    _click2(){
-        AlertIOS.prompt("提示","欢迎猫猫",[
-            {
-                text:'取消',
-                onPress:()=>{
-                    alert('取消')
-                }
-            },
-            {
-                text:'确定',
-                onPress:(text)=>{
-                    alert(text)
-                }
-            }
-        ])
-    }
-    _click3(){
-        const {navigator}=this.props;
-        if (navigator) {
-            navigator.push({
-                name: 'DateIOS',
-                component: DateIOS
-            })
-        }
-    }
-    _click4(){
-        const {navigator}=this.props;
-        if (navigator) {
-            navigator.push({
-                name: 'ASIOS',
-                component: ASIOS
-            })
-        }
-    }
 
+    goBack = () => {
+        const {navigator} =this.props;
+        if (navigator) {
+            navigator.pop();
+        }
+    }
 }
 
 
@@ -200,20 +246,11 @@ class new_project extends Component {
         super(props);
     }
 
-    goBack = () => {
-        const {navigator} =this.props;
-        if (navigator) {
-            navigator.pop();
-        }
-    }
-
-
-
 
     render() {
 
-        let defaultName = 'ShoppingList';
-        let defauleComponent = ShoppingList;
+        let defaultName = 'BtnList';
+        let defauleComponent = BtnList;
         return (
             <Navigator
                 initialRoute={{name:defaultName,component:defauleComponent}}
@@ -234,17 +271,6 @@ class new_project extends Component {
 
         );
 
-
-        // return (
-        //     <View>
-        //         <Text onPress={this.goBack.bind(this)}>
-        //             返回欢迎页
-        //         </Text>
-        //         <ShoppingList navigator={this.props.navigator} >
-        //
-        //         </ShoppingList>
-        //     </View>
-        // )
     }
 }
 
@@ -306,8 +332,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     img: {
-        height:100,
-        backgroundColor:'transparent'
+        height: 100,
+        backgroundColor: 'transparent'
     },
     item_text: {
 
