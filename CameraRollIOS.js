@@ -34,47 +34,98 @@ export default class CameraRollIOS extends Component {
     }
 
     componentDidMount() {
-        let _this =this;
+        let _that = this;
+
         CameraRoll.getPhotos(fetchParams).then(
-            (data)=>{
+            (data) => {
                 let edges = data.edges;
-                let images = edges.map((edge)=>{
+                //.map 是针对数组里的每一个元素，
+                //调用回调函数 ，第一个参数是元素，第二个参数是下标，然后把每次调用的返回值按顺序再组织成一个新的数组
+                let images = edges.map((edge) => {
                     return edge.node.image;
                 });
-                _this.setState({
-                    images:images
-                })
+                _that.setState({
+                    images: images,
+                });
             }
-        ).catch(
-            (err)=>{
-                alert(err);
-            }
-        )
+
+        ).catch(error => {
+            console.log('出错了:' + error);
+
+        });
     }
 
     saveImg(img) {
+        let _that = this;
+        CameraRoll.saveImageWithTag(imgUrl + img1).then(
+            (url) => {
+                if (url) {
+                    let images = _that.state.images;
+                    //unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度。
+                    images.unshift(
+                        {
+                            uri: url,
+                        }
+                    );
+                    _that.setState({
+                        images: images,
+                    });
+                }
+            }
+        ).catch(error => {
+            alert('保存第一张照片失败-error-' + error);
+
+        });
     }
 
 
     render() {
         return (
             <ScrollView>
+
                 <View style={styles.row}>
-                    <View style={styles.flex}>
-                        <Image resizeMode='stretch' style={[styles.m5,styles.imgHeight]}
-                               source={{uri:imgUrl+'reactnative.png'}}/>
+                    <View style={styles.flex_1}>
+                        <Image resizeMode='stretch'
+                               style={[styles.imgHeight, styles.m5]}
+                               source={{ uri: imgUrl + 'dongfangyao888.jpg' }}
+                        />
                     </View>
+
+                    <View style={styles.flex_1}>
+                        <Image  resizeMode='stretch'
+                                style={[styles.imgHeight, styles.m5]}
+                                source={{ uri: imgUrl + 'reactnative.png' }}
+                        />
+                    </View>
+
+
                 </View>
 
-                <Text style={styles.saveImg} onPress={this.saveImg.bind(this,'reactnative.png')}>保存到相册</Text>
-
+                <View>
+                    <Text onPress={this.saveImg.bind(this, 'dongfangyao888.jpg', 'reactnative.png') }
+                          style={styles.saveImg}
+                    >
+                        保存图片到相册
+                    </Text>
+                </View>
 
                 <View style={styles.imageGrid}>
-                    {this.state.images.map((image) => <Image style={styles.image} resizeMode='stretch' key={image.url} source={image}/>)}
+                    {
+                        this.state.images.map((image) =>
+                            <Image
+                                style={styles.image}
+                                resizeMode='stretch'
+                                source={image}
+                                key={image.uri}
+                            />
+
+
+                        )
+                    }
                 </View>
 
             </ScrollView>
-        )
+        );
     }
 
 

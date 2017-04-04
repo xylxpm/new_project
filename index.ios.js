@@ -110,7 +110,7 @@ class BtnList extends Component {
                 <Text style={styles.btn} onPress={this._click2.bind(this)}>弹框试试2</Text>
                 <Text style={styles.btn} onPress={this._click3.bind(this)}>日期选择</Text>
                 <Text style={styles.btn} onPress={this._click4.bind(this)}>ActionSheetIOS</Text>
-                <Text style={styles.btn} onPress={this._click6.bind(this)}>CameraRollIOS</Text>
+                <Text style={styles.btn} onPress={this._click6.bind(this)}>CameraRoll(报错ing，可以使用第三方组件)</Text>
             </ScrollView>
         )
     }

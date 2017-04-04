@@ -269,7 +269,7 @@ class WelcomeUI extends Component {
         }
     }
 
-    _click10 = () => {
+    _click11 = () => {
         const {navigator}=this.props;
         if (navigator) {
             navigator.push({
@@ -279,7 +279,7 @@ class WelcomeUI extends Component {
         }
     }
 
-    _click11 = () => {
+    _click10 = () => {
         const {navigator}=this.props;
         if (navigator) {
             navigator.push({
