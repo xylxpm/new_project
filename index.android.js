@@ -32,6 +32,7 @@ import ShoppingCart from './ShoppingCart.js';
 import DateTimePicker from './DateTimePicker.js';
 import NetInfoRN from './NetInfoRN.js';
 import CameraRollAndroid from './CameraRollAndroid.js';
+import Timer from  './Timer.js'
 
 
 
@@ -138,6 +139,12 @@ class WelcomeUI extends Component {
                             <TouchableOpacity onPress={this._click11} style={styles.startupButton}>
                                 <Text style={styles.likeText}>图片api</Text>
                             </TouchableOpacity>
+                        </View>
+                        <View style={{flexDirection:'row'}}>
+                            <TouchableOpacity onPress={this._click12} style={styles.startupButton}>
+                                <Text style={styles.likeText}>timer</Text>
+                            </TouchableOpacity>
+
                         </View>
                     </View>
                 )
@@ -287,6 +294,16 @@ class WelcomeUI extends Component {
             navigator.push({
                 name: 'NetInfoRN',
                 component: NetInfoRN
+            })
+        }
+    }
+
+    _click12 = () => {
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'Timer',
+                component: Timer
             })
         }
     }

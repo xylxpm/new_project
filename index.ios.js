@@ -22,7 +22,8 @@ import {
 import Dimensions from 'Dimensions';
 import DateIOS from './DateIOS.js';
 import ASIOS from  './ASIOS.js';
-import CameraRollIOS from  './CameraRollIOS.js'
+import CameraRollIOS from  './CameraRollIOS.js';
+import Timer from  './Timer.js'
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -111,6 +112,7 @@ class BtnList extends Component {
                 <Text style={styles.btn} onPress={this._click3.bind(this)}>日期选择</Text>
                 <Text style={styles.btn} onPress={this._click4.bind(this)}>ActionSheetIOS</Text>
                 <Text style={styles.btn} onPress={this._click6.bind(this)}>CameraRoll</Text>
+                <Text style={styles.btn} onPress={this._click7.bind(this)}>Timer</Text>
             </ScrollView>
         )
     }
@@ -131,6 +133,16 @@ class BtnList extends Component {
             navigator.push({
                 name: 'CameraRollIOS',
                 component: CameraRollIOS
+            })
+        }
+    }
+
+    _click7 (){
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'Timer',
+                component: Timer
             })
         }
     }
