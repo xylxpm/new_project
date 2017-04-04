@@ -32,7 +32,8 @@ import ShoppingCart from './ShoppingCart.js';
 import DateTimePicker from './DateTimePicker.js';
 import NetInfoRN from './NetInfoRN.js';
 import CameraRollAndroid from './CameraRollAndroid.js';
-import Timer from  './Timer.js'
+import Timer from  './Timer.js';
+import PanResponderAndroid from  './PanResponderAndroid.js';
 
 
 
@@ -143,6 +144,9 @@ class WelcomeUI extends Component {
                         <View style={{flexDirection:'row'}}>
                             <TouchableOpacity onPress={this._click12} style={styles.startupButton}>
                                 <Text style={styles.likeText}>timer</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={this._click13} style={styles.startupButton}>
+                                <Text style={styles.likeText}>触摸api</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -304,6 +308,16 @@ class WelcomeUI extends Component {
             navigator.push({
                 name: 'Timer',
                 component: Timer
+            })
+        }
+    }
+
+    _click13 = () => {
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'PanResponderAndroid',
+                component: PanResponderAndroid
             })
         }
     }

@@ -23,7 +23,8 @@ import Dimensions from 'Dimensions';
 import DateIOS from './DateIOS.js';
 import ASIOS from  './ASIOS.js';
 import CameraRollIOS from  './CameraRollIOS.js';
-import Timer from  './Timer.js'
+import Timer from  './Timer.js';
+import PanResponderIos from './PanResponderIOS.js';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -113,6 +114,7 @@ class BtnList extends Component {
                 <Text style={styles.btn} onPress={this._click4.bind(this)}>ActionSheetIOS</Text>
                 <Text style={styles.btn} onPress={this._click6.bind(this)}>CameraRoll</Text>
                 <Text style={styles.btn} onPress={this._click7.bind(this)}>Timer</Text>
+                <Text style={styles.btn} onPress={this._click8.bind(this)}>触摸api</Text>
             </ScrollView>
         )
     }
@@ -143,6 +145,16 @@ class BtnList extends Component {
             navigator.push({
                 name: 'Timer',
                 component: Timer
+            })
+        }
+    }
+
+    _click8 (){
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'PanResponderIos',
+                component: PanResponderIos
             })
         }
     }
