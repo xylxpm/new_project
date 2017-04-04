@@ -131,7 +131,7 @@ class ShoppingList extends Component {
         }
 
         return(
-            <ScrollView style={{ marginTop: 10 }}>
+            <ScrollView style={{ marginTop: 20 }}>
                 {lists}
                 <Text  style={styles.btn} onPress={this._click1.bind(this)}>弹框试试1</Text>
                 <Text  style={styles.btn} onPress={this._click2.bind(this)}>弹框试试2</Text>

@@ -30,6 +30,7 @@ import TabNavigator from './TabNavigators.js';
 import SideMenu from './SideMenus.js';
 import ShoppingCart from './ShoppingCart.js';
 import DateTimePicker from './DateTimePicker.js';
+import NetInfoRN from './NetInfoRN.js';
 
 const PAGES = 5;
 const BGCOLOR = ['#fdc08e', '#fff6b9', '#99d1b7', '#dde5fe', '#f79273'];
@@ -126,6 +127,10 @@ class WelcomeUI extends Component {
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this._click9} style={styles.startupButton}>
                                 <Text style={styles.likeText}>日期时间组件</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={this._click10} style={styles.startupButton}>
+                                <Text style={styles.likeText}>网络请求</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -256,6 +261,16 @@ class WelcomeUI extends Component {
             navigator.push({
                 name: 'DateTimePicker',
                 component: DateTimePicker
+            })
+        }
+    }
+
+    _click10 = () => {
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'NetInfoRN',
+                component: NetInfoRN
             })
         }
     }
