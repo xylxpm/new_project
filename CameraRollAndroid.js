@@ -35,17 +35,21 @@ export default class CameraRollAndroid extends Component {
         };
     }
 
+    goBack() {
+        const {navigator} =this.props;
+        if (navigator) {
+            navigator.pop();
+        }
+    }
+
     render() {
         return (
             <ScrollView>
-
+                <Text style={{marginBottom:20,marginTop:30}} onPress={this.goBack.bind(this)}>
+                    返回欢迎页
+                </Text>
                 <View style={styles.row}>
-                    <View style={styles.flex_1}>
-                        <Image resizeMode='stretch'
-                               style={[styles.imgHeight, styles.m5]}
-                               source={{ uri: imgUrl + 'dongfangyao888.jpg' }}
-                        />
-                    </View>
+
 
                     <View style={styles.flex_1}>
                         <Image  resizeMode='stretch'

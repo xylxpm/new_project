@@ -33,6 +33,13 @@ export default class CameraRollIOS extends Component {
         }
     }
 
+    goBack() {
+        const {navigator} =this.props;
+        if (navigator) {
+            navigator.pop();
+        }
+    }
+
     componentDidMount() {
         let _that = this;
 
@@ -48,16 +55,15 @@ export default class CameraRollIOS extends Component {
                     images: images,
                 });
             }
-
         ).catch(error => {
             console.log('出错了:' + error);
 
         });
     }
 
-    saveImg(img) {
+    saveImg(img1,img2) {
         let _that = this;
-        CameraRoll.saveImageWithTag(imgUrl + img1).then(
+        CameraRoll.saveImageWithTag(img1).then(
             (url) => {
                 if (url) {
                     let images = _that.state.images;
@@ -70,6 +76,24 @@ export default class CameraRollIOS extends Component {
                     _that.setState({
                         images: images,
                     });
+                    CameraRoll.saveImageWithTag(img2).then(
+                        (url) => {
+                            images.unshift(
+                                {
+                                    uri: url,
+                                }
+                            );
+                            _that.setState({
+                                images: images,
+                            });
+                            alert('图片全部保存成功');
+                        }
+
+                    ).catch(
+                        error => {
+                            alert('保存第二张照片失败-error-' + error);
+                        }
+                    );
                 }
             }
         ).catch(error => {
@@ -82,28 +106,26 @@ export default class CameraRollIOS extends Component {
     render() {
         return (
             <ScrollView>
-
+                <Text style={{marginBottom:20,marginTop:30}} onPress={this.goBack.bind(this)}>
+                    返回欢迎页
+                </Text>
                 <View style={styles.row}>
-                    <View style={styles.flex_1}>
-                        <Image resizeMode='stretch'
-                               style={[styles.imgHeight, styles.m5]}
-                               source={{ uri: imgUrl + 'dongfangyao888.jpg' }}
-                        />
-                    </View>
 
-                    <View style={styles.flex_1}>
-                        <Image  resizeMode='stretch'
-                                style={[styles.imgHeight, styles.m5]}
-                                source={{ uri: imgUrl + 'reactnative.png' }}
-                        />
-                    </View>
+                    <Image resizeMode='cover'
+                           style={[styles.imgHeight, styles.m5]}
+                           source={{ uri: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489943540744&di=50d6a12eecaad024fc3d661dbc8555e8&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fbaike%2Fpic%2Fitem%2F9f510fb30f2442a71525d087d543ad4bd11302ec.jpg' }}
+                    />
 
-
+                    <Image resizeMode='cover'
+                           style={[styles.imgHeight, styles.m5]}
+                           source={{ uri: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490249971337&di=dcf5647527bfa84d469eb0da5731cc02&imgtype=0&src=http%3A%2F%2Fimg.go007.com%2F2017%2F02%2F21%2F094036d74261eeed_6.jpg' }}
+                    />
                 </View>
 
                 <View>
-                    <Text onPress={this.saveImg.bind(this, 'dongfangyao888.jpg', 'reactnative.png') }
-                          style={styles.saveImg}
+                    <Text
+                        onPress={this.saveImg.bind(this,  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489943540744&di=50d6a12eecaad024fc3d661dbc8555e8&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fbaike%2Fpic%2Fitem%2F9f510fb30f2442a71525d087d543ad4bd11302ec.jpg','https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490249971337&di=dcf5647527bfa84d469eb0da5731cc02&imgtype=0&src=http%3A%2F%2Fimg.go007.com%2F2017%2F02%2F21%2F094036d74261eeed_6.jpg') }
+                        style={styles.saveImg}
                     >
                         保存图片到相册
                     </Text>
@@ -118,8 +140,6 @@ export default class CameraRollIOS extends Component {
                                 source={image}
                                 key={image.uri}
                             />
-
-
                         )
                     }
                 </View>
@@ -156,7 +176,8 @@ const styles = StyleSheet.create({
         margin: 10
     },
     imgHeight: {
-        height: 180
+        height: 170,
+        width: 170,
     },
     saveImg: {
         flex: 1,
