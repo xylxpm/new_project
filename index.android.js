@@ -145,7 +145,9 @@ class WelcomeUI extends Component {
                             <TouchableOpacity onPress={this._click12} style={styles.startupButton}>
                                 <Text style={styles.likeText}>timer</Text>
                             </TouchableOpacity>
-
+                            <TouchableOpacity style={styles.startupButton}>
+                                <Text style={styles.likeText}>触摸api</Text>
+                            </TouchableOpacity>
 
                         </View>
                     </View>
