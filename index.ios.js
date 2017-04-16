@@ -24,7 +24,7 @@ import DateIOS from './DateIOS.js';
 import ASIOS from  './ASIOS.js';
 import CameraRollIOS from  './CameraRollIOS.js';
 import Timer from  './Timer.js';
-import PanResponderIos from './PanResponderIOS.js';
+import PanResponderIOS from './PanResponderIOS.js';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -153,8 +153,8 @@ class BtnList extends Component {
         const {navigator}=this.props;
         if (navigator) {
             navigator.push({
-                name: 'PanResponderIos',
-                component: PanResponderIos
+                name: 'PanResponderIOS',
+                component: PanResponderIOS
             })
         }
     }

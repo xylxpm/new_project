@@ -33,7 +33,6 @@ import DateTimePicker from './DateTimePicker.js';
 import NetInfoRN from './NetInfoRN.js';
 import CameraRollAndroid from './CameraRollAndroid.js';
 import Timer from  './Timer.js';
-import PanResponderAndroid from  './PanResponderAndroid.js';
 
 
 
