@@ -15,7 +15,20 @@ import {
 
 import Dimensions from 'Dimensions';
 
-export default class PanResponderIOS extends Component {}
+export default class PanResponderIOS extends Component {
+    constructor(props){
+        super(props);
+    }
+
+
+    render(){
+        return(
+            <View>
+                <Text>333</Text>
+            </View>
+        )
+    }
+}
 
 const styles = StyleSheet.create({})
 

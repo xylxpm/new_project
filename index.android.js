@@ -144,9 +144,6 @@ class WelcomeUI extends Component {
                             <TouchableOpacity onPress={this._click12} style={styles.startupButton}>
                                 <Text style={styles.likeText}>timer</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.startupButton}>
-                                <Text style={styles.likeText}>触摸api</Text>
-                            </TouchableOpacity>
 
                         </View>
                     </View>
@@ -311,15 +308,9 @@ class WelcomeUI extends Component {
         }
     }
 
-    // _click13 = () => {
-    //     const {navigator}=this.props;
-    //     if (navigator) {
-    //         navigator.push({
-    //             name: 'PanResponderAndroid',
-    //             component: PanResponderAndroid
-    //         })
-    //     }
-    // }
+
+
+
 
     move(delta) {
         var page = this.state.page + delta;
@@ -390,6 +381,7 @@ class new_project extends Component {
         let defaultName = 'WelcomeUI';
         let defauleComponent = WelcomeUI;
         return (
+
             <Navigator
                 initialRoute={{name:defaultName,component:defauleComponent}}
                 ref='navigator'
