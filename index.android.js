@@ -33,6 +33,7 @@ import DateTimePicker from './DateTimePicker.js';
 import NetInfoRN from './NetInfoRN.js';
 import CameraRollAndroid from './CameraRollAndroid.js';
 import Timer from  './Timer.js';
+import Pan from './PanResponderAndroid';
 
 
 
@@ -144,7 +145,9 @@ class WelcomeUI extends Component {
                             <TouchableOpacity onPress={this._click12} style={styles.startupButton}>
                                 <Text style={styles.likeText}>timer</Text>
                             </TouchableOpacity>
-
+                            <TouchableOpacity onPress={this._click13} style={styles.startupButton}>
+                                <Text style={styles.likeText}>触摸进度条</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 )
@@ -309,7 +312,15 @@ class WelcomeUI extends Component {
     }
 
 
-
+    _click13 = () => {
+        const {navigator}=this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'Pan',
+                component: Pan
+            })
+        }
+    }
 
 
     move(delta) {

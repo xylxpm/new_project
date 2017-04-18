@@ -80,9 +80,9 @@ export default class PanResponderAndroid extends Component {
                 <Text style={styles.textStyle}>
                     选择了{Math.round(this.state.progress * 100)}%
                 </Text>
-                <View style={styles.touchViewStyle}>
-                    {...this.watcher.panHandlers}
-                </View>
+                {/*<View style={styles.touchViewStyle}>*/}
+                    {/*{...this.watcher.panHandlers}*/}
+                {/*</View>*/}
             </View>
         )
     }
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         width: totalWidth - 20,
         height: 40,
         backgroundColor: 'transparent',
-        positions: 'absolute',
+        position: 'absolute',
         left: 10,
         top: 30
     },
