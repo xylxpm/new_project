@@ -1,8 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * 引导页
- */
+
 
 import React, {Component} from 'react';
 import {
