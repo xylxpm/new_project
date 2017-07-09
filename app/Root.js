@@ -8,73 +8,128 @@ import {
     AppRegistry,
     StyleSheet,
     PixelRatio,
-    ScrollView,
     Text,
-    Button,
+    Image,
+    TouchableOpacity,
     View
 } from 'react-native';
 
-import { StackNavigator,TabNavigator,DrawerNavigator } from 'react-navigation';
+import {StackNavigator} from 'react-navigation';
 
-class MyHomeScreen extends Component {
+
+var imglist = [
+    'https://www.baidu.com/img/bd_logo1.png',
+    'https://gss1.bdstatic.com/5eN1dDebRNRTm2_p8IuM_a/res/img/xiaoman2016_24.png',
+    'http://res.smzdm.com/pc/v1.0/dist/img/embed/logo.png'
+];
+class HomeScreen extends Component {
     static navigationOptions = {
-        drawerLabel: 'Home',
-        drawerIcon: ({ tintColor }) => (
-            <Image
-                source={require('../img/1.jpg')}
-                resizeMode='cover'
-                style={[styles.icon, {tintColor: tintColor}]}
-            />
-        ),
+        title: '主页',
     };
 
     render() {
         return (
-            <Button
-                onPress={() => this.props.navigation.navigate('Notifications')}
-                title="Go to notifications"
-            />
+            <View  style={[styles.flex]}>
+                <MyImage imgs={imglist}> </MyImage>
+            </View>
         );
     }
 }
 
-class MyNotificationsScreen extends Component {
-    static navigationOptions = {
-        drawerLabel: 'Notifications',
-        drawerIcon: ({ tintColor }) => (
-            <Image
-                source={require('../img/2.jpg')}
-                style={[styles.icon, {tintColor: tintColor}]}
-            />
-        ),
-    };
+class MyImage extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            count:0,
+            imgs:this.props.imgs,
+        };
+    }
+
+    _up() {
+        var _count=this.state.count;
+        _count--;
+        if(_count>=0){
+            this.setState({
+                count:_count,
+            });
+        }else{
+            // alert(_count)
+        }
+    }
+
+    _down() {
+        var _count=this.state.count;
+        _count++;
+        if(_count<this.state.imgs.length){
+            this.setState({
+                count:_count,
+            });
+        }else{
+            // alert(this.state.imgs[this.state.count])
+        }
+    }
 
     render() {
         return (
-            <Button
-                onPress={() => this.props.navigation.goBack()}
-                title="Go back home"
-            />
-        );
+            <View style={[styles.flex,styles.margin25]}>
+                <View style={styles.image}>
+                    <Image style={styles.img}
+                           resizeMode='contain'
+                           source={{uri:this.state.imgs[this.state.count]}} />
+
+                </View>
+                <View style={styles.btnss}>
+                    <TouchableOpacity onPress={this._up.bind(this)}><View style={styles.btn}><Text style={{color:'#23BEFE'}}>上一张</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this._down.bind(this)}><View style={styles.btn}><Text style={{color:'#23BEFE'}}>下一张</Text></View></TouchableOpacity>
+                </View>
+            </View>
+        )
     }
 }
+
 
 const styles = StyleSheet.create({
-    icon: {
-        width: 24,
-        height: 24,
+    flex: {
+        flex: 1,
     },
+    margin25: {
+        marginTop: 25,
+    },
+    btnss: {
+        flexDirection: 'row',
+        marginTop: 20,
+        justifyContent: 'center',
+    },
+    btn: {
+        width: 60,
+        height: 30,
+        borderColor: '#23BEFE',
+        borderWidth: 1,
+        borderRadius: 3,
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: 15,
+
+    },
+    img: {
+        height: 200,
+        width: 200
+    },
+    image: {
+        borderColor: '#23BEFE',
+        borderWidth: 1,
+        borderRadius: 3,
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft:10,
+        marginRight:10
+    }
 });
 
-const Root=StackNavigator({
-    Home: {
-        screen: MyHomeScreen,
-    },
-    Notifications: {
-        screen: MyNotificationsScreen,
-    },
+
+const Root = StackNavigator({
+    Home: {screen: HomeScreen}
 });
 
 
-
-module.exports=Root;
+module.exports = Root;
