@@ -9,6 +9,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     Text,
+    ViewPagerAndroid,
     View
 } from 'react-native';
 
@@ -22,13 +23,19 @@ class HomeScreen extends Component {
 
     render() {
 
-        return (
-            <View style={styles.flex} >
-                <View><Text>111111</Text></View>
 
-            </View>
+        return (
+            <ViewPagerAndroid style={styles.flex}
+                              initialPage={0}
+            >
+                <View><Text>111111</Text></View>
+                <View><Text>22222</Text></View>
+                <View><Text>33333</Text></View>
+            </ViewPagerAndroid>
         )
     }
+
+
 }
 
 
