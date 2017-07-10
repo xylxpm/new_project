@@ -1,31 +1,36 @@
 import React from 'react';
-import { Button, ScrollView } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import {
+    StyleSheet
+} from 'react-native';
+import {Button, ScrollView,Text} from 'react-native';
+import {StackNavigator} from 'react-navigation';
 import SampleText from './SampleText';
 
-const MyNavScreen = ({ navigation, banner }) => (
+const MyNavScreen = ({navigation, banner}) => (
     <ScrollView>
         <SampleText>{banner}</SampleText>
-        <Button
+        <Text style={styles.btn}
+              onPress={() => navigation.navigate('Profile', { name: 'Jane' })}>Go to a profile screen txt</Text>
+        <Button style={styles.btn}
             onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
-            title="Go to a profile screen"
+            title="Go to a profile screen "
         />
-        <Button
+        <Button style={styles.btn}
             onPress={() => navigation.navigate('Photos', { name: 'Jane' })}
             title="Go to a photos screen"
         />
-        <Button onPress={() => navigation.goBack(null)} title="Go back" />
+        <Button  style={styles.btn} onPress={() => navigation.goBack(null)} title="Go back"/>
     </ScrollView>
 );
 
-const MyHomeScreen = ({ navigation }) => (
-    <MyNavScreen banner="Home Screen" navigation={navigation} />
+const MyHomeScreen = ({navigation}) => (
+    <MyNavScreen banner="Home Screen" navigation={navigation}/>
 );
 MyHomeScreen.navigationOptions = {
     title: 'Welcome',
 };
 
-const MyPhotosScreen = ({ navigation }) => (
+const MyPhotosScreen = ({navigation}) => (
     <MyNavScreen
         banner={`${navigation.state.params.name}'s Photos`}
         navigation={navigation}
@@ -35,7 +40,7 @@ MyPhotosScreen.navigationOptions = {
     title: 'Photos',
 };
 
-const MyProfileScreen = ({ navigation }) => (
+const MyProfileScreen = ({navigation}) => (
     <MyNavScreen
         banner={`${navigation.state.params.mode === 'edit' ? 'Now Editing ' : ''}${navigation.state.params.name}'s Profile`}
         navigation={navigation}
@@ -43,9 +48,9 @@ const MyProfileScreen = ({ navigation }) => (
 );
 
 MyProfileScreen.navigationOptions = props => {
-    const { navigation } = props;
-    const { state, setParams } = navigation;
-    const { params } = state;
+    const {navigation} = props;
+    const {state, setParams} = navigation;
+    const {params} = state;
     return {
         headerTitle: `${params.name}'s Profile!`,
         // Render a button on the right side of the header.
@@ -61,6 +66,7 @@ MyProfileScreen.navigationOptions = props => {
 };
 
 const SimpleStack = StackNavigator({
+
     Home: {
         screen: MyHomeScreen,
     },
@@ -71,6 +77,19 @@ const SimpleStack = StackNavigator({
     Photos: {
         path: 'photos/:name',
         screen: MyPhotosScreen,
+    },
+});
+
+const styles = StyleSheet.create({
+
+    btn: {
+        borderWidth: 1,
+        borderColor: '#dddddd',
+        borderStyle:'solid',
+        backgroundColor:'#ffffff',
+        color:'#000000',
+        width:300,
+        height:40
     },
 });
 

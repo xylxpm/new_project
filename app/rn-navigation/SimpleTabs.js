@@ -89,6 +89,7 @@ const SimpleTabs = TabNavigator(
         People: {
             screen: MyPeopleScreen,
             path: 'cart',
+
         },
         Chat: {
             screen: MyChatScreen,
@@ -102,7 +103,15 @@ const SimpleTabs = TabNavigator(
     {
         tabBarOptions: {
             activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff',
+            style: {
+                height:49,
+                backgroundColor:'white'
+            },
+            activeBackgroundColor:'white',
+            inactiveBackgroundColor:'white',
+            inactiveTintColor:'#aaa'
         },
+        tabBarPosition:'bottom'
     }
 );
 

@@ -10,7 +10,8 @@ import {
 
 import {StackNavigator} from 'react-navigation';
 
-import App from './components/App';
+import App from './rn-navigation/App';
+
 class HomeScreen extends Component {
     static navigationOptions = {
         title: '主页',
@@ -32,7 +33,7 @@ class HomeScreen extends Component {
 const styles = StyleSheet.create({
     flex: {
         flex: 1
-    }
+    },
 
 });
 
