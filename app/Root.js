@@ -1,7 +1,3 @@
-/**
- * 入口
- */
-
 
 import React, {Component} from 'react';
 import {
@@ -14,6 +10,7 @@ import {
 
 import {StackNavigator} from 'react-navigation';
 
+import App from './components/App';
 class HomeScreen extends Component {
     static navigationOptions = {
         title: '主页',
@@ -24,7 +21,7 @@ class HomeScreen extends Component {
 
         return (
             <View style={styles.flex} >
-                <View><Text>111111</Text></View>
+                <App></App>
 
             </View>
         )
@@ -45,4 +42,4 @@ const Root = StackNavigator({
 });
 
 
-module.exports = Root;
+module.exports = HomeScreen;
