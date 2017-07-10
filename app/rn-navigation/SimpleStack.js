@@ -9,8 +9,8 @@ import SampleText from './SampleText';
 const MyNavScreen = ({navigation, banner}) => (
     <ScrollView>
         <SampleText>{banner}</SampleText>
-        <Text style={styles.btn}
-              onPress={() => navigation.navigate('Profile', { name: 'Jane' })}>Go to a profile screen txt</Text>
+        {/*<Text style={styles.btn}*/}
+              {/*onPress={() => navigation.navigate('Profile', { name: 'Jane' })}>Go to a profile screen txt</Text>*/}
         <Button style={styles.btn}
             onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
             title="Go to a profile screen "
@@ -93,5 +93,5 @@ const styles = StyleSheet.create({
     },
 });
 
-//export default SimpleStack;
-module.exports = SimpleStack
+export default SimpleStack;
+//module.exports = SimpleStack

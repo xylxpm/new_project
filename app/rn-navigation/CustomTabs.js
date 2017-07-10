@@ -117,5 +117,5 @@ const styles = StyleSheet.create({
     },
 });
 
-//export default CustomTabs;
-module.exports = CustomTabs;
+export default CustomTabs;
+//module.exports = CustomTabs;

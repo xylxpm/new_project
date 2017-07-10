@@ -64,5 +64,5 @@ const styles = StyleSheet.create({
     },
 });
 
-//export default DrawerExample;
-module.exports = DrawerExample
+export default DrawerExample;
+//module.exports = DrawerExample

@@ -9,7 +9,7 @@ const Banner = () => (
     </View>
 );
 
-//export default Banner;
+export default Banner;
 
 const styles = StyleSheet.create({
     banner: {
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
     },
 });
 
-module.exports = Banner;
+//module.exports = Banner;

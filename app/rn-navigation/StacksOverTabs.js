@@ -101,6 +101,6 @@ const StacksOverTabs = StackNavigator({
     },
 });
 
-//export default StacksOverTabs;
+export default StacksOverTabs;
 
-module.exports = StacksOverTabs
+//module.exports = StacksOverTabs

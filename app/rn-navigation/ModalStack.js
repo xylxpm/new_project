@@ -88,5 +88,5 @@ const ModalStack = StackNavigator(
     }
 );
 
-//export default ModalStack;
-module.exports = ModalStack
+export default ModalStack;
+//module.exports = ModalStack

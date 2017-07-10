@@ -11,8 +11,8 @@ const SampleText = ({ children }: { children?: Children }) => (
     <Text style={styles.sampleText}>{children}</Text>
 );
 
-//export default SampleText;
-module.exports = SampleText
+export default SampleText;
+//module.exports = SampleText
 
 const styles = StyleSheet.create({
     sampleText: {

@@ -114,5 +114,5 @@ const StacksInTabs = TabNavigator(
     }
 );
 
-//export default StacksInTabs;
-module.exports = StacksInTabs
+export default StacksInTabs;
+//module.exports = StacksInTabs

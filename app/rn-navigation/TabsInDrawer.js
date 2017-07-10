@@ -45,5 +45,5 @@ const styles = StyleSheet.create({
     },
 });
 
-//export default TabsInDrawer;
-module.exports = TabsInDrawer
+export default TabsInDrawer;
+//module.exports = TabsInDrawer

@@ -102,14 +102,26 @@ const SimpleTabs = TabNavigator(
     },
     {
         tabBarOptions: {
-            activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff',
+            activeTintColor: '#e91e63',//Platform.OS === 'ios' ? '#e91e63' : '#ddd',
             style: {
-                height:49,
+                height : Platform.OS === 'ios' ? 50 : 65,
                 backgroundColor:'white'
             },
             activeBackgroundColor:'white',
             inactiveBackgroundColor:'white',
-            inactiveTintColor:'#aaa'
+            inactiveTintColor:'#aaa',
+
+            showIcon:true,
+            indicatorStyle:{
+                height:0,
+            },
+            labelStyle:{
+                fontSize:12
+
+            },
+            iconStyle:{
+
+            }
         },
         tabBarPosition:'bottom'
     }
