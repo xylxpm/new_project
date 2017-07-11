@@ -14,7 +14,8 @@ import Main from './pages/Main';
 import Splash from './pages/Splash';
 
 
-const TabContainer = TabNavigator({
+const TabContainer = TabNavigator(
+    {
     Main: {
         screen: Main,
         navigationOptions:{
@@ -75,7 +76,8 @@ const TabContainer = TabNavigator({
             ),
         }
     }
-}, {
+},
+    {
     lazy: true,
     tabBarOptions: {
         activeTintColor: '#e91e63',//Platform.OS === 'ios' ? '#e91e63' : '#ddd',
@@ -97,7 +99,8 @@ const TabContainer = TabNavigator({
         }
     },
     tabBarPosition:'bottom'
-});
+}
+);
 
 const App = StackNavigator({
 
@@ -120,6 +123,13 @@ const App = StackNavigator({
         headerTintColor: '#fff'
     }
 });
+
+const styles = StyleSheet.create({
+    container: {
+        marginTop: Platform.OS === 'ios' ? 20 : 0,
+    },
+});
+
 
 
 export default App;
