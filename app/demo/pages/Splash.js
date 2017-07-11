@@ -1,15 +1,15 @@
 /**
- * 主页
+ * 启动页面
  */
 import React, {Component} from 'react';
 import {
     StyleSheet, TextInput, View, Button
 } from 'react-native';
 
-class Main extends Component {
+class  Splash extends Component {
 
     static navigationOptions = ({navigation}) => ({
-        title:'主页'
+        title:'启动页面'
     })
 
     constructor(props) {
@@ -19,7 +19,7 @@ class Main extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Button title="主页"/>
+                <Button title="启动页面"/>
             </View>
         )
     }
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Main;
+export default Splash;

@@ -2,7 +2,7 @@ import React from 'react';
 import {
     StyleSheet
 } from 'react-native';
-import {Button, ScrollView,Text} from 'react-native';
+import {Button, ScrollView, Text} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import SampleText from './SampleText';
 
@@ -10,16 +10,16 @@ const MyNavScreen = ({navigation, banner}) => (
     <ScrollView>
         <SampleText>{banner}</SampleText>
         {/*<Text style={styles.btn}*/}
-              {/*onPress={() => navigation.navigate('Profile', { name: 'Jane' })}>Go to a profile screen txt</Text>*/}
+        {/*onPress={() => navigation.navigate('Profile', { name: 'Jane' })}>Go to a profile screen txt</Text>*/}
         <Button style={styles.btn}
-            onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
-            title="Go to a profile screen "
+                onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
+                title="Go to a profile screen "
         />
         <Button style={styles.btn}
-            onPress={() => navigation.navigate('Photos', { name: 'Jane' })}
-            title="Go to a photos screen"
+                onPress={() => navigation.navigate('Photos', { name: 'Jane' })}
+                title="Go to a photos screen"
         />
-        <Button  style={styles.btn} onPress={() => navigation.goBack(null)} title="Go back"/>
+        <Button style={styles.btn} onPress={() => navigation.goBack(null)} title="Go back"/>
     </ScrollView>
 );
 
@@ -27,7 +27,7 @@ const MyHomeScreen = ({navigation}) => (
     <MyNavScreen banner="Home Screen" navigation={navigation}/>
 );
 MyHomeScreen.navigationOptions = {
-    title: 'Welcome00',
+    title: 'Welcome',
 };
 
 const MyPhotosScreen = ({navigation}) => (
@@ -53,6 +53,8 @@ MyProfileScreen.navigationOptions = props => {
     const {params} = state;
     return {
         headerTitle: `${params.name}'s Profile!`,
+        headerBackTitle:'返回',
+        headerTruncatedBackTitle:'返回',
         // Render a button on the right side of the header.
         // When pressed switches the screen to edit mode.
         headerRight: (
@@ -69,10 +71,11 @@ const SimpleStack = StackNavigator({
 
     Home: {
         screen: MyHomeScreen,
+
     },
     Profile: {
         path: 'people/:name',
-        screen: MyProfileScreen,
+        screen: MyProfileScreen
     },
     Photos: {
         path: 'photos/:name',
@@ -85,11 +88,11 @@ const styles = StyleSheet.create({
     btn: {
         borderWidth: 1,
         borderColor: '#dddddd',
-        borderStyle:'solid',
-        backgroundColor:'#ffffff',
-        color:'#000000',
-        width:300,
-        height:40
+        borderStyle: 'solid',
+        backgroundColor: '#ffffff',
+        color: '#000000',
+        width: 300,
+        height: 40
     },
 });
 

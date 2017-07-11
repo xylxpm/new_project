@@ -10,19 +10,21 @@ import {
 
 import {StackNavigator} from 'react-navigation';
 
-import App from './rn-navigation/App';
+//import App from './rn-navigation/App';
+
+import App2 from './demo/App';
 
 class HomeScreen extends Component {
-    static navigationOptions = {
-        title: '主页',
-    };
+    // static navigationOptions = {
+    //     title: '主页',
+    // };
 
 
     render() {
 
         return (
             <View style={styles.flex} >
-                <App></App>
+                <App2></App2>
 
             </View>
         )

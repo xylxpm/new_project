@@ -1,15 +1,16 @@
 /**
- * 主页
+ * 建议  页面
  */
+
 import React, {Component} from 'react';
 import {
     StyleSheet, TextInput, View, Button
 } from 'react-native';
 
-class Main extends Component {
+class Feedback extends Component {
 
     static navigationOptions = ({navigation}) => ({
-        title:'主页'
+        title:'留言'
     })
 
     constructor(props) {
@@ -19,7 +20,10 @@ class Main extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Button title="主页"/>
+                <TextInput style={styles.textInput} placeholder='请留言'>
+
+                </TextInput>
+                <Button title="提交"/>
             </View>
         )
     }
@@ -40,4 +44,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Main;
+export default Feedback;
