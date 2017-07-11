@@ -27,7 +27,7 @@ const MyHomeScreen = ({navigation}) => (
     <MyNavScreen banner="Home Screen" navigation={navigation}/>
 );
 MyHomeScreen.navigationOptions = {
-    title: 'Welcome',
+    title: 'Welcome00',
 };
 
 const MyPhotosScreen = ({navigation}) => (
