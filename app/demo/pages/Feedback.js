@@ -23,7 +23,6 @@ class Feedback extends Component {
                 <TextInput style={styles.textInput} placeholder='请留言'>
 
                 </TextInput>
-                <Button title="提交"/>
             </View>
         )
     }

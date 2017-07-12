@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 
 import {StackNavigator} from 'react-navigation';
+import Swiper from 'react-native-swiper';
 
-//import App from './rn-navigation/App';
 
-import App2 from './demo/App';
+import App from './demo/App';
 
 class HomeScreen extends Component {
     // static navigationOptions = {
@@ -24,7 +24,7 @@ class HomeScreen extends Component {
 
         return (
             <View style={styles.flex} >
-                <App2></App2>
+                <App></App>
 
             </View>
         )

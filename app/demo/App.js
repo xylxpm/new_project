@@ -63,18 +63,6 @@ const TabContainer = TabNavigator(
                 />
             ),
         }
-    },
-    About: {
-        screen: About,
-        navigationOptions:{
-            tabBarIcon: ({ tintColor, focused }) => (
-                <Ionicons
-                    name={focused ? 'ios-alert' : 'ios-alert-outline'}
-                    size={26}
-                    style={{ color: tintColor }}
-                />
-            ),
-        }
     }
 },
     {
@@ -138,3 +126,7 @@ const styles = StyleSheet.create({
 
 
 export default App;
+
+
+
+

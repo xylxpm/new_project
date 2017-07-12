@@ -19,7 +19,6 @@ class  Splash extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Button title="启动页面"/>
             </View>
         )
     }

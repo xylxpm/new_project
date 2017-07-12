@@ -10,7 +10,7 @@ import {
 class  Customer extends Component {
 
     static navigationOptions = ({navigation}) => ({
-        title:'用户'
+        title:'喵的'
     })
 
     constructor(props) {
@@ -20,7 +20,6 @@ class  Customer extends Component {
     render() {
         return (
             <View style={styles.container}>
-                  <Button title="用户"/>
             </View>
         )
     }

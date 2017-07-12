@@ -3,41 +3,63 @@
  */
 import React, {Component} from 'react';
 import {
-    StyleSheet, TextInput, View, Button
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View,
+    Alert,
+    Dimensions,
+    Image
 } from 'react-native';
+import Swiper from 'react-native-swiper';
+
+import MySwiper from '../components/MySwiper';
+
 
 class Main extends Component {
 
     static navigationOptions = ({navigation}) => ({
-        title:'主页'
+        title: '喵主页'
     })
+
 
     constructor(props) {
         super(props);
+        this.state = {
+            swiperShow: false,
+        };
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                swiperShow: true
+            });
+        }, 0)
     }
 
     render() {
-        return (
-            <View style={styles.container}>
-                <Button title="主页"/>
-            </View>
-        )
+
+        if (this.state.swiperShow) {
+            return (
+                <View>
+                    <MySwiper></MySwiper>
+                </View>
+            )
+        } else {
+            return (
+                <View>
+                    <View style={{height:200}}>
+                        <Text>dddd</Text>
+                    </View>
+                </View>
+            );
+        }
+
     }
 
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: '#fff'
-    },
-    textInput: {
-        flex: 1,
-        fontSize: 18,
-        padding: 5,
-        textAlignVertical: 'top'
-    }
-})
+const styles = StyleSheet.create({})
 
 export default Main;
