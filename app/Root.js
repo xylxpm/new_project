@@ -9,8 +9,6 @@ import {
 } from 'react-native';
 
 import {StackNavigator} from 'react-navigation';
-import Swiper from 'react-native-swiper';
-
 
 import App from './demo/App';
 

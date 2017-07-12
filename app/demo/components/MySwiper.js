@@ -11,6 +11,7 @@ import {
     Image
 } from 'react-native';
 import Swiper from 'react-native-swiper';
+import colors from '../baseComponents/Colors';
 
 const {width} = Dimensions.get('window');
 const height = 160;
@@ -63,7 +64,7 @@ class MySwiper extends Component {
             <Swiper style={styles.imgWrapper} height={height}
                     loop={true} autoplay={true} showsButtons={false}
                     dot={<View style={{backgroundColor:'rgba(0,0,0,.2)', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-                    activeDot={<View style={{backgroundColor: '#e91e63', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+                    activeDot={<View style={{backgroundColor: colors.appColor, width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
                     paginationStyle={{ bottom: 10, left: null, right: 10 }}
             >
                 {viewList}

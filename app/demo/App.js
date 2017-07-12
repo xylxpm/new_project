@@ -1,13 +1,15 @@
 /**
- * Created by xylxpm on 2017/7/10.
+ * 入口
  */
 import React from 'react';
 import { Button, Platform, ScrollView, StyleSheet } from 'react-native';
 import {StackNavigator, TabNavigator} from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+
+import colors from './baseComponents/Colors';
+
 import Feedback from './pages/Feedback';
-import About from './pages/About';
 import Category from './pages/Category';
 import Customer from './pages/Customer';
 import Main from './pages/Main';
@@ -69,14 +71,14 @@ const TabContainer = TabNavigator(
     lazy: true,
     tabBarOptions: {
         animationEnabled:false,
-        activeTintColor: '#e91e63',//Platform.OS === 'ios' ? '#e91e63' : '#ddd',
+        activeTintColor: colors.appColor,
         style: {
             height : Platform.OS === 'ios' ? 50 : 65,
-            backgroundColor:'white'
+            backgroundColor:colors.white
         },
-        activeBackgroundColor:'white',
-        inactiveBackgroundColor:'white',
-        inactiveTintColor:'#aaa',
+        activeBackgroundColor:colors.white,
+        inactiveBackgroundColor:colors.white,
+        inactiveTintColor:colors.tintColor,
         swipeEnabled:true,
         showIcon:true,
         indicatorStyle:{
@@ -95,25 +97,22 @@ const App = StackNavigator({
 
     Home: {
         screen: TabContainer,
-        navigationOptions: {
-            headerLeft: null
-        }
+
     }
 }, {
     headerMode: 'screen',
     navigationOptions: {
         headerStyle: {
-            backgroundColor: '#e91e63',
+            backgroundColor: colors.appColor,
             elevation:0,
-            height:50
+            height:60
         },
         headerTitleStyle: {
-            color: '#fff',
+            color: colors.white,
             fontSize: 20,
             alignSelf:'center'
         },
-        headerTintColor: '#fff',
-        headerPressColorAndroid:'red'
+        headerTintColor: colors.white
     }
 });
 
