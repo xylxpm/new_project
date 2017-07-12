@@ -80,6 +80,7 @@ const TabContainer = TabNavigator(
     {
     lazy: true,
     tabBarOptions: {
+        animationEnabled:false,
         activeTintColor: '#e91e63',//Platform.OS === 'ios' ? '#e91e63' : '#ddd',
         style: {
             height : Platform.OS === 'ios' ? 50 : 65,
@@ -88,7 +89,7 @@ const TabContainer = TabNavigator(
         activeBackgroundColor:'white',
         inactiveBackgroundColor:'white',
         inactiveTintColor:'#aaa',
-
+        swipeEnabled:true,
         showIcon:true,
         indicatorStyle:{
             height:0,
@@ -114,13 +115,17 @@ const App = StackNavigator({
     headerMode: 'screen',
     navigationOptions: {
         headerStyle: {
-            backgroundColor: '#3e9ce9'
+            backgroundColor: '#e91e63',
+            elevation:0,
+            height:50
         },
         headerTitleStyle: {
             color: '#fff',
-            fontSize: 20
+            fontSize: 20,
+            alignSelf:'center'
         },
-        headerTintColor: '#fff'
+        headerTintColor: '#fff',
+        headerPressColorAndroid:'red'
     }
 });
 
