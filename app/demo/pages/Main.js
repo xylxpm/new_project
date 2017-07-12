@@ -18,7 +18,7 @@ import colors from '../baseComponents/Colors';
 
 import MySwiper from '../components/MySwiper';
 import MyMenuBtn from '../components/MyMenuBtn';
-import MyCard from '../components/MyCard';
+import MyCardList from '../components/MyCardList';
 
 
 class Main extends Component {
@@ -68,18 +68,7 @@ class Main extends Component {
                         <MyMenuBtn title="招亲" icon="ios-megaphone"></MyMenuBtn>
                         <MyMenuBtn title="比武" icon="ios-bonfire"></MyMenuBtn>
                     </View>
-                    <View style={[styles.cardlists]}>
-                        <MyCard bgColor="#e91e63" title="零食" name="喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食" introduce="喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食零食喵星人零食喵星人零食零食喵星人零食喵星人零食"  count="300"></MyCard>
-                        <MyCard bgColor="#80DEEA" title="玩具" name="喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具" introduce="喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具"  count="3040"></MyCard>
-                    </View>
-                    <View style={[styles.cardlists]}>
-                        <MyCard bgColor="#AB47BC" title="零食" name="喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食" introduce="喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食零食喵星人零食喵星人零食零食喵星人零食喵星人零食"  count="300"></MyCard>
-                        <MyCard bgColor="#8BC34A" title="玩具" name="喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具" introduce="喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具"  count="3040"></MyCard>
-                    </View>
-                    <View style={[styles.cardlists]}>
-                        <MyCard bgColor="#AB47BC" title="零食" name="喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食" introduce="喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食零食喵星人零食喵星人零食零食喵星人零食喵星人零食"  count="300"></MyCard>
-                        <MyCard bgColor="#8BC34A" title="玩具" name="喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具" introduce="喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具"  count="3040"></MyCard>
-                    </View>
+                    <MyCardList></MyCardList>
                 </ScrollView>
             )
         } else {
@@ -108,10 +97,6 @@ const styles = StyleSheet.create({
         height:60,
         flexDirection: 'row'
     },
-    cardlists:{
-        marginTop:10,
-        flexDirection: 'row'
-    }
 
 })
 

@@ -10,7 +10,7 @@ import {
 class  Customer extends Component {
 
     static navigationOptions = ({navigation}) => ({
-        title:'喵的'
+        title:'喵窝'
     })
 
     constructor(props) {

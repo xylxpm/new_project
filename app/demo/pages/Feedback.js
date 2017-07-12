@@ -10,7 +10,7 @@ import {
 class Feedback extends Component {
 
     static navigationOptions = ({navigation}) => ({
-        title:'留言'
+        title:'视频'
     })
 
     constructor(props) {
@@ -20,9 +20,7 @@ class Feedback extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TextInput style={styles.textInput} placeholder='请留言'>
 
-                </TextInput>
             </View>
         )
     }
