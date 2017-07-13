@@ -1,16 +1,20 @@
 /**
  * 方形卡片列表
  */
+
+
 import React, {Component} from 'react';
 import {
-    AppRegistry,
+    TouchableNativeFeedback,
+    TouchableHighlight,
     StyleSheet,
+    Platform,
+    Image,
     Text,
-    View,
-    Image
+    View
 } from 'react-native';
 
-import MyCard from '../components/MyCard';
+import colors from '../baseComponents/Colors';
 
 let lists = [
     {
@@ -42,6 +46,38 @@ let lists = [
         count:300
     },
 ]
+
+class MyCard extends Component {
+
+    constructor(props) {
+        super(props)
+    }
+
+
+    render() {
+
+        return (
+            <View style={styles.card}>
+                <View style={{
+                    backgroundColor:this.props.bgColor,
+                    width: '100%',
+                    borderTopLeftRadius: 3,
+                    borderTopRightRadius: 3,
+                    justifyContent: 'center',
+                    height: 28,
+                }}>
+                    <Text style={styles.title} numberOfLines={2}>{this.props.title}</Text>
+                </View>
+                <View style={styles.main}>
+                    <Text style={styles.name} numberOfLines={2}>{this.props.name}</Text>
+                    <Text style={styles.introduce} numberOfLines={3}>{this.props.introduce}</Text>
+                    <Text style={styles.count} numberOfLines={1}>{this.props.count}</Text>
+                </View>
+            </View>
+        )
+    }
+
+}
 
 class MyCardList extends Component {
     constructor(props) {
@@ -84,6 +120,52 @@ const styles = StyleSheet.create({
         paddingLeft:15,
         paddingTop:8,
 
+    },
+    flex: {
+        flex: 1
+    },
+    center: {
+        alignItems: 'center',
+        justifyContent: "center"
+    },
+    card: {
+        flex: 1,
+        backgroundColor: colors.white,
+        marginRight: 15,
+        borderRadius: 3,
+        shadowColor:colors.black,
+        shadowOffset:{width:1,height:1},
+        shadowRadius:3,
+        shadowOpacity:0.4,
+        elevation:4  //android的阴影效果
+
+    },
+    title: {
+        marginLeft: 8,
+        fontSize: 12,
+        color: colors.white,
+    },
+    main: {
+        padding: 8,
+        height: 155,
+    },
+    name: {
+        lineHeight: 22,
+        color: colors.black,
+        fontSize: 14,
+        marginBottom: 5
+    },
+    introduce: {
+        lineHeight: 22,
+        color: colors.tintColor,
+        fontSize: 12,
+        marginBottom: 5
+    },
+    count: {
+        fontSize: 10,
+        textAlign: 'left',
+        color: colors.introduce,
+        lineHeight: 22
     }
 
 })
