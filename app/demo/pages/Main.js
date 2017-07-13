@@ -65,8 +65,8 @@ class Main extends Component {
                         <MyMenuBtn title="零食" icon="ios-cart"></MyMenuBtn>
                         <MyMenuBtn title="玩具" icon="ios-game-controller-b"></MyMenuBtn>
                         <MyMenuBtn title="医疗" icon="ios-locate"></MyMenuBtn>
-                        <MyMenuBtn title="招亲" icon="ios-megaphone"></MyMenuBtn>
                         <MyMenuBtn title="比武" icon="ios-bonfire"></MyMenuBtn>
+                        <MyMenuBtn title="招亲" icon="ios-megaphone"></MyMenuBtn>
                     </View>
                     <MyCardList></MyCardList>
                 </ScrollView>

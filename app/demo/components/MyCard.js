@@ -59,11 +59,14 @@ const styles = StyleSheet.create({
     card: {
         flex: 1,
         backgroundColor: colors.white,
-        marginLeft: 6,
-        marginRight: 6,
-        marginTop: 6,
-        borderBottomLeftRadius: 3,
-        borderBottomRightRadius: 3,
+        marginRight: 15,
+        borderRadius: 3,
+        shadowColor:colors.black,
+        shadowOffset:{width:1,height:1},
+        shadowRadius:3,
+        shadowOpacity:0.4,
+        elevation:4  //android的阴影效果
+
     },
     title: {
         marginLeft: 8,
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
         color: colors.white,
     },
     main: {
-        padding: 10,
+        padding: 8,
         height: 155,
     },
     name: {

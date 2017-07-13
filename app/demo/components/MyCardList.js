@@ -80,7 +80,10 @@ class MyCardList extends Component {
 const styles = StyleSheet.create({
     cardlists: {
         marginTop: 10,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        paddingLeft:15,
+       // paddingRight:6,
+        paddingTop:8
     }
 
 })
