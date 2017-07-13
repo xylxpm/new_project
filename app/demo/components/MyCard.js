@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     },
     main: {
         padding: 8,
-        height: 155,
+        height: 140,
     },
     name: {
         lineHeight: 22,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     introduce: {
-        lineHeight: 22,
+        lineHeight: 20,
         color: colors.tintColor,
         fontSize: 12,
         marginBottom: 5
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         fontSize: 10,
         textAlign: 'left',
         color: colors.introduce,
-        lineHeight: 22
+        lineHeight: 20
     }
 })
 

@@ -8,6 +8,7 @@ import {
     StyleSheet,
     View,
     Dimensions,
+    Text,
     Image
 } from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -44,6 +45,17 @@ class MySwiper extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            swiperShow: false,
+        };
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                swiperShow: true
+            });
+        }, 0)
     }
 
 
@@ -59,17 +71,27 @@ class MySwiper extends Component {
             );
             viewList.push(row);
         }
+        if (this.state.swiperShow) {
+            return (
+                <Swiper style={styles.imgWrapper} height={height}
+                        loop={true} autoplay={true} showsButtons={false}
+                        dot={<View style={{backgroundColor:'rgba(0,0,0,.2)', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+                        activeDot={<View style={{backgroundColor: colors.appColor, width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+                        paginationStyle={{ bottom: 10, left: null, right: 10 }}
+                >
+                    {viewList}
+                </Swiper>
+            )
+        } else {
+            return (
+                <View style={styles.flex}>
+                    <View style={{height:200}}>
+                        <Text>等待</Text>
+                    </View>
+                </View>
+            );
+        }
 
-        return (
-            <Swiper style={styles.imgWrapper} height={height}
-                    loop={true} autoplay={true} showsButtons={false}
-                    dot={<View style={{backgroundColor:'rgba(0,0,0,.2)', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-                    activeDot={<View style={{backgroundColor: colors.appColor, width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-                    paginationStyle={{ bottom: 10, left: null, right: 10 }}
-            >
-                {viewList}
-            </Swiper>
-        )
     }
 }
 

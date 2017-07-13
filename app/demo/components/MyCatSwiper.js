@@ -13,8 +13,6 @@ import {
 
 import Carousel from 'react-native-snap-carousel';
 
-import colors from '../baseComponents/Colors';
-
 
 const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
 function wp(percentage) {
@@ -22,8 +20,8 @@ function wp(percentage) {
     return Math.round(value);
 }
 
-const slideHeight = viewportHeight * 0.25;
-const slideWidth = wp(50);
+const slideHeight = viewportHeight * 0.2;
+const slideWidth = wp(40);
 const itemHorizontalMargin = wp(2);
 const sliderWidth = viewportWidth;
 const itemWidth = slideWidth + itemHorizontalMargin * 2;
@@ -111,7 +109,6 @@ class MyCatSwiper extends Component {
 
     render() {
         return (
-
             <Carousel
                 sliderWidth={sliderWidth}
                 itemWidth={itemWidth}
@@ -148,7 +145,6 @@ const styles = StyleSheet.create({
     },
 
     catimage: {
-        ...StyleSheet.absoluteFillObject,
         resizeMode: 'cover',
         borderRadius: Platform.OS === 'ios' ? entryBorderRadius : 0,
         borderTopLeftRadius: entryBorderRadius,

@@ -3,7 +3,7 @@
  */
 
 
-import React, {Component} from 'react';
+import React, {Component,PropTypes} from 'react';
 import {
     TouchableNativeFeedback,
     TouchableHighlight,
@@ -49,29 +49,33 @@ let lists = [
 
 class MyCard extends Component {
 
-    constructor(props) {
-        super(props)
+    static propTypes = {
+        bgColor: PropTypes.string,
+        title: PropTypes.string,
+        name: PropTypes.string,
+        introduce: PropTypes.string,
+        count: PropTypes.number
     }
 
 
     render() {
-
+        const {bgColor, title,name,introduce,count} = this.props;
         return (
             <View style={styles.card}>
                 <View style={{
-                    backgroundColor:this.props.bgColor,
+                    backgroundColor:bgColor,
                     width: '100%',
                     borderTopLeftRadius: 3,
                     borderTopRightRadius: 3,
                     justifyContent: 'center',
                     height: 28,
                 }}>
-                    <Text style={styles.title} numberOfLines={2}>{this.props.title}</Text>
+                    <Text style={styles.title} numberOfLines={2}>{title}</Text>
                 </View>
                 <View style={styles.main}>
-                    <Text style={styles.name} numberOfLines={2}>{this.props.name}</Text>
-                    <Text style={styles.introduce} numberOfLines={3}>{this.props.introduce}</Text>
-                    <Text style={styles.count} numberOfLines={1}>{this.props.count}</Text>
+                    <Text style={styles.name} numberOfLines={2}>{name}</Text>
+                    <Text style={styles.introduce} numberOfLines={3}>{introduce}</Text>
+                    <Text style={styles.count} numberOfLines={1}>{count}</Text>
                 </View>
             </View>
         )
@@ -82,7 +86,6 @@ class MyCard extends Component {
 class MyCardList extends Component {
     constructor(props) {
         super(props);
-
     }
 
 

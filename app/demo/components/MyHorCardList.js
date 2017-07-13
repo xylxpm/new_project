@@ -1,7 +1,7 @@
 /**
  * 横向卡片列表
  */
-import React, {Component} from 'react';
+import React, {Component,PropTypes} from 'react';
 import {
     TouchableNativeFeedback,
     TouchableHighlight,
@@ -20,44 +20,54 @@ let lists2 = [
         title: '零食',
         name: '喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食',
         introduce: '喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食零食喵星人零食喵星人零食零食喵星人零食喵星人零食',
-        count: 300
+        count: 300,
+        img: 'https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=072980f9df2a6059461de948495d5ffe/4034970a304e251fc3ec88c8af86c9177f3e53e2.jpg'
     },
     {
         bgColor: '#80DEEA',
         title: '玩具',
         name: '喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
         introduce: '喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
-        count: 300
+        count: 300,
+        img: 'http://img.mp.itc.cn/upload/20160511/75173ff5bd664ea58d08b85e55294155_th.jpg'
     },
     {
         bgColor: '#AB47BC',
         title: '玩具',
         name: '喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
         introduce: '喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
-        count: 300
+        count: 300,
+        img: 'http://img.mp.itc.cn/upload/20160511/73656acdc23a4e019b1e4baffe32eef2_th.jpg'
     },
     {
         bgColor: '#8BC34A',
         title: '玩具',
         name: '喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
         introduce: '喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
-        count: 300
+        count: 300,
+        img: 'http://img1.gtimg.com/astro/pics/hv1/93/224/1731/112615488.jpg'
     },
 ]
 
 class MyHorCard extends Component {
-    constructor(props) {
-        super(props)
+    static propTypes = {
+        img:PropTypes.string,
+        bgColor: PropTypes.string,
+        name: PropTypes.string,
+        introduce: PropTypes.string,
+        count: PropTypes.number
     }
-
     render() {
+        const {bgColor,name,introduce,count,img} = this.props;
         return (
             <View style={styles.flex}>
-                <View style={{backgroundColor:this.props.bgColor,width:120,height:90,marginTop:5}}></View>
+                <View style={{backgroundColor:bgColor,width:120,height:90,marginTop:5}}>
+                    <Image source={{ uri: img }} style={styles.catimage} />
+                </View>
                 <View style={styles.main}>
-                    <Text style={styles.name} numberOfLines={1}>{this.props.name}</Text>
-                    <Text style={styles.introduce} numberOfLines={2}>{this.props.introduce}</Text>
-                    <Text style={styles.count} numberOfLines={1}>{this.props.count}</Text>
+                    <Text style={styles.name} numberOfLines={1}>{name}</Text>
+                    <Text style={styles.introduce} numberOfLines={2}>{introduce}</Text>
+                    <Text style={styles.count} numberOfLines={1}>{count}</Text>
                 </View>
             </View>
         )
@@ -76,7 +86,7 @@ class MyHorCardList extends Component {
         for (let i in lists2) {
             let row = (
                 <MyHorCard key={i} bgColor={lists2[i].bgColor} name={lists2[i].name}
-                           introduce={lists2[i].introduce} count={lists2[i].count}></MyHorCard>
+                           introduce={lists2[i].introduce} count={lists2[i].count} img={lists2[i].img}></MyHorCard>
             );
             viewList.push(row);
         }
@@ -126,7 +136,12 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingBottom: 15,
         backgroundColor: colors.white,
-    }
+    },
+    catimage: {
+        resizeMode: 'cover',
+        width: 120,
+        height: 90,
+    },
 
 })
 export default MyHorCardList;
