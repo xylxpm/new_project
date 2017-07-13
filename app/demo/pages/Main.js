@@ -19,6 +19,7 @@ import colors from '../baseComponents/Colors';
 import MySwiper from '../components/MySwiper';
 import MyMenuBtn from '../components/MyMenuBtn';
 import MyCardList from '../components/MyCardList';
+import MyHorCardList from '../components/MyHorCardList';
 
 
 class Main extends Component {
@@ -69,6 +70,7 @@ class Main extends Component {
                         <MyMenuBtn title="招亲" icon="ios-megaphone"></MyMenuBtn>
                     </View>
                     <MyCardList></MyCardList>
+                    <MyHorCardList style={styles.MyHorCardList}></MyHorCardList>
                 </ScrollView>
             )
         } else {
@@ -95,7 +97,9 @@ const styles = StyleSheet.create({
         height:60,
         flexDirection: 'row'
     },
+    MyHorCardList:{
 
+    }
 })
 
 export default Main;

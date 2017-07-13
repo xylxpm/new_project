@@ -1,5 +1,5 @@
 /**
- * 卡片组件
+ * 方块卡片组件
  */
 import React, {Component} from 'react';
 import {
@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 
 import colors from '../baseComponents/Colors';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 class MyCard extends Component {
 
