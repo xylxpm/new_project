@@ -8,7 +8,7 @@ import {
     StyleSheet,
     Platform,
     Image,
-    Text,
+    Text,Switch,
     View
 } from 'react-native';
 
@@ -92,15 +92,28 @@ class MyOperation extends Component {
 
 
                 <View style={[styles.flexb,styles.mb]}>
-
                     <View style={[styles.flexDRow]}>
                         <Ionicons
-                            name={'ios-construct-outline'}
+                            name={'ios-moon-outline'}
                             size={26}
                             style={{ color: colors.blue,}}
                         />
+                        <View style={[styles.rowRight]}>
+                            <Text style={{flex:1}}>夜间模式</Text>
+                            <Switch style={{marginRight:15}} ></Switch>
+                        </View>
+                    </View>
+
+
+                    <View style={[styles.flexDRow]}>
+                        <Ionicons
+                            name={'ios-bulb-outline'}
+                            size={26}
+                            style={{ color: colors.green,}}
+                        />
                         <View style={[styles.rowRight,styles.nob]}>
-                            <Text style={{flex:1}}>设置</Text>
+                            <Text style={{flex:1}} onPress={this.click.bind(this)}>系统设置</Text>
+
                             <Ionicons
                                 name={'ios-arrow-forward'}
                                 size={26}
@@ -114,6 +127,7 @@ class MyOperation extends Component {
             </View>
         )
     }
+    click(){}
 }
 
 const styles = StyleSheet.create({
