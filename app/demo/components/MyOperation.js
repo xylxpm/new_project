@@ -131,14 +131,14 @@ const styles = StyleSheet.create({
     },
     flexDRow: {
         flexDirection: 'row',
-        height: 60,
+        height: 44,
         alignItems: 'center',
     },
     rowRight: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        height: 60,
+        height: 44,
         marginLeft: 15,
         borderBottomWidth: 0.5,
         borderBottomColor: colors.tintColor,
