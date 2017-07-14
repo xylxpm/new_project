@@ -5,3 +5,8 @@ components  组件（本项目用的）
 pages  页面
 utils  工具 （格式化字符串之类的基础工具）
 containers  容器
+
+
+1、下拉、上拉刷新
+2、时间轴
+3、列表吸顶
