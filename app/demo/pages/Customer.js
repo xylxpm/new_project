@@ -4,8 +4,13 @@
 
 import React, {Component} from 'react';
 import {
-    StyleSheet, TextInput, View, Button
+    StyleSheet, TextInput, View, Button,ScrollView
 } from 'react-native';
+
+
+import MyInfo from '../components/MyInfo';
+import MyInfoBtn from '../components/MyInfoBtn';
+import MyOperation from '../components/MyOperation';
 
 class  Customer extends Component {
 
@@ -19,8 +24,11 @@ class  Customer extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-            </View>
+            <ScrollView style={styles.container}>
+                <MyInfo></MyInfo>
+                <MyInfoBtn></MyInfoBtn>
+                <MyOperation></MyOperation>
+            </ScrollView>
         )
     }
 
@@ -30,7 +38,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#fff'
     },
     textInput: {
         flex: 1,

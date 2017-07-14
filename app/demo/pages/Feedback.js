@@ -1,5 +1,5 @@
 /**
- * 建议  页面
+ * 视频列表  页面
  */
 
 import React, {Component} from 'react';
@@ -10,7 +10,7 @@ import {
 class Feedback extends Component {
 
     static navigationOptions = ({navigation}) => ({
-        title:'视频'
+        title:'喵视频'
     })
 
     constructor(props) {

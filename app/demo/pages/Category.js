@@ -62,6 +62,27 @@ let lists = [
                 illustration: 'https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=2c4a18b50924ab18f41be96554938da8/0b46f21fbe096b638808a3c30c338744ebf8ac14.jpg'
             }
         ]
+    },
+    {
+        name: '移动开发',
+        content: [
+            {
+                title: 'Android',
+                illustration: 'http://img1.gtimg.com/astro/pics/hv1/93/224/1731/112615488.jpg'
+            },
+            {
+                title: 'IOS',
+                illustration: 'https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=13487e5d5aafa40f28cbc68fca0d682a/37d3d539b6003af35a3f150f352ac65c1138b6dc.jpg'
+            },
+            {
+                title: 'Unity 3D',
+                illustration: 'https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=59622d50a61ea8d39e2f7c56f6635b2b/267f9e2f0708283875a846ffb899a9014d08f1b0.jpg'
+            },
+            {
+                title: 'Cocos2d-x',
+                illustration: 'https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=2c4a18b50924ab18f41be96554938da8/0b46f21fbe096b638808a3c30c338744ebf8ac14.jpg'
+            }
+        ]
     }
 ];
 
@@ -153,7 +174,7 @@ const styles = StyleSheet.create({
     },
     catimage: {
         resizeMode: 'cover',
-        borderRadius: Platform.OS === 'ios' ? 8 : 0,
+        borderRadius: 8,
         width: 36,
         height: 36,
     },

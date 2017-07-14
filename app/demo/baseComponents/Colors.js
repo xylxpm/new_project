@@ -11,5 +11,9 @@ export default {
     disabled: '#dadee0',
     white: '#ffffff',
     error: '#ff190c',
-    appColor:'#e91e63'
+    appColor:'#e91e63',
+    blue:'#40C4FF',
+    yellow:'#FFB74D',
+    green:'#8BC34A',
+    pink:'#F48FB1'
 };

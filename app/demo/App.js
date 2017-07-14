@@ -56,7 +56,9 @@ const TabContainer = TabNavigator(
     },
     Customer: {
         screen: Customer,
+
         navigationOptions:{
+            header:null,
             tabBarIcon: ({ tintColor, focused }) => (
                 <Ionicons
                     name={focused ? 'ios-people' : 'ios-people-outline'}
@@ -64,7 +66,8 @@ const TabContainer = TabNavigator(
                     style={{ color: tintColor }}
                 />
             ),
-        }
+        },
+
     }
 },
     {
