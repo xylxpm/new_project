@@ -9,14 +9,18 @@
 
 #import "AppDelegate.h"
 
+
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import <AVFoundation/AVFoundation.h>  // import
+#import <AVFoundation/AVFoundation.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
+
   NSURL *jsCodeLocation;
   
 
@@ -35,7 +39,8 @@
   [self.window makeKeyAndVisible];
   return YES;
   
-  [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];  // allow
 }
+
+
 
 @end
