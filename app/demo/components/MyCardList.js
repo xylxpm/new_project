@@ -15,32 +15,33 @@ import {
 } from 'react-native';
 
 import colors from '../baseComponents/Colors';
+import MyTitle from '../components/MyTitle';
 
 let lists = [
     {
         bgColor:'#e91e63',
-        title:'零食',
+        title:'PHP',
         name:'喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食',
         introduce:'喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食喵星人零食零食喵星人零食喵星人零食零食喵星人零食喵星人零食',
         count:300
     },
     {
         bgColor:'#80DEEA',
-        title:'玩具',
+        title:'JAVA',
         name:'喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
         introduce:'喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
         count:300
     },
     {
         bgColor:'#AB47BC',
-        title:'玩具',
+        title:'前端工具',
         name:'喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
         introduce:'喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
         count:300
     },
     {
         bgColor:'#8BC34A',
-        title:'玩具',
+        title:'REACT',
         name:'喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
         introduce:'喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具喵星人玩具',
         count:300
@@ -107,7 +108,8 @@ class MyCardList extends Component {
         }
 
         return (
-            <View>
+            <View style={styles.cardContainer}>
+                <MyTitle icon="ios-color-palette" colour="#40C4FF" title="课程推荐" isChange="true"></MyTitle>
                 {viewList}
 
             </View>
@@ -117,11 +119,13 @@ class MyCardList extends Component {
 }
 
 const styles = StyleSheet.create({
+    cardContainer:{
+        paddingTop:15,
+    },
     cardlists: {
-        marginTop: 10,
         flexDirection: 'row',
         paddingLeft:15,
-        paddingTop:8,
+        paddingBottom:15,
 
     },
     flex: {

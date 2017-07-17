@@ -21,6 +21,7 @@ import MyMenuBtn from '../components/MyMenuBtn';
 import MyCardList from '../components/MyCardList';
 import MyHorCardList from '../components/MyHorCardList';
 import MyCatSwiper from '../components/MyCatSwiper';
+import MyTitle from '../components/MyTitle';
 
 
 class Main extends Component {
@@ -63,14 +64,17 @@ class Main extends Component {
             <ScrollView style={[styles.flex,styles.main]}>
                 <MySwiper></MySwiper>
                 <View style={styles.btnlists}>
-                    <MyMenuBtn title="零食" icon="ios-cart"></MyMenuBtn>
-                    <MyMenuBtn title="玩具" icon="ios-game-controller-b"></MyMenuBtn>
-                    <MyMenuBtn title="医疗" icon="ios-locate"></MyMenuBtn>
-                    <MyMenuBtn title="比武" icon="ios-bonfire"></MyMenuBtn>
-                    <MyMenuBtn title="招亲" icon="ios-megaphone"></MyMenuBtn>
+                    <MyMenuBtn title="实战" icon="ios-cart"></MyMenuBtn>
+                    <MyMenuBtn title="路径" icon="ios-game-controller-b"></MyMenuBtn>
+                    <MyMenuBtn title="猿问" icon="ios-locate"></MyMenuBtn>
+                    <MyMenuBtn title="手记" icon="ios-bonfire"></MyMenuBtn>
+                    <MyMenuBtn title="发现" icon="ios-megaphone"></MyMenuBtn>
                 </View>
                 <MyCardList></MyCardList>
                 <MyHorCardList></MyHorCardList>
+                <View>
+                    <MyTitle icon="ios-contacts" colour="#F48FB1" title="推荐老师" isChange="false"></MyTitle>
+                </View>
                 <MyCatSwiper></MyCatSwiper>
             </ScrollView>
         )
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     main: {
-        marginBottom: 3
+        marginBottom: 0
     },
     btnlists: {
         marginTop: 10,

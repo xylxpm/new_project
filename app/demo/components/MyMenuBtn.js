@@ -3,8 +3,7 @@
  */
 import React, {Component} from 'react';
 import {
-    TouchableNativeFeedback,
-    TouchableHighlight,
+    TouchableOpacity,
     StyleSheet,
     Platform,
     Image,
@@ -23,14 +22,14 @@ class MyMenuBtn extends Component {
     render() {
 
         return (
-            <View style={[styles.flex,styles.center]}>
+            <TouchableOpacity style={[styles.flex,styles.center]} onPress={this.props.onPress}>
                 <Ionicons
                     name={this.props.icon}
                     size={36}
                     style={styles.img }
                 />
                 <Text style={[styles.text,styles.center]}>{this.props.title}</Text>
-            </View>
+            </TouchableOpacity>
         )
     }
 
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
         color: colors.black,
     },
     img: {
-       color: colors.appColor
+        color: colors.appColor
     },
     center: {
         alignItems: 'center',

@@ -1,46 +1,35 @@
-
 import React, {Component} from 'react';
 import {
     AppRegistry,
     StyleSheet,
-    TouchableOpacity,
-    Text,
     View
 } from 'react-native';
 
-import {StackNavigator} from 'react-navigation';
-
 import App from './demo/App';
 
-class HomeScreen extends Component {
-    // static navigationOptions = {
-    //     title: '主页',
-    // };
 
 
+
+export default class Root extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+        }
+    }
     render() {
-
         return (
             <View style={styles.flex} >
                 <App></App>
-
             </View>
         )
     }
 }
 
-
 const styles = StyleSheet.create({
     flex: {
         flex: 1
     },
-
 });
 
+AppRegistry.registerComponent('new_project', () => Root);
 
-const Root = StackNavigator({
-    Home: {screen: HomeScreen}
-});
-
-
-module.exports = HomeScreen;

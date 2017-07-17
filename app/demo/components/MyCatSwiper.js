@@ -70,13 +70,13 @@ class CatLists extends Component {
     render() {
         const {title, illustration} = this.props;
         return (
-            <TouchableOpacity  activeOpacity={0.7}   style={styles.slideInnerContainer}>
+            <TouchableOpacity activeOpacity={0.7} style={styles.slideInnerContainer}>
                 <View style={styles.catimageContainer}>
-                    <Image source={{ uri: illustration }} style={styles.catimage} />
+                    <Image source={{ uri: illustration }} style={styles.catimage}/>
                 </View>
 
                 <View style={styles.cattextContainer }>
-                    <Text style={ styles.catsubtitle}   numberOfLines={1}>
+                    <Text style={ styles.catsubtitle} numberOfLines={1}>
                         {title}
                     </Text>
                 </View>
@@ -109,21 +109,22 @@ class MyCatSwiper extends Component {
 
     render() {
         return (
-            <Carousel
-                sliderWidth={sliderWidth}
-                itemWidth={itemWidth}
-                firstItem={1}
-                inactiveSlideScale={0.92}
-                inactiveSlideOpacity={0.7}
-                enableMomentum={false}
-                containerCustomStyle={styles.slider}
-                contentContainerCustomStyle={styles.sliderContainer}
-                showsHorizontalScrollIndicator={false}
-                snapOnAndroid={true}
-                removeClippedSubviews={false}
-            >
-                { this.getSlides(ENTRIES1) }
-            </Carousel>
+
+                <Carousel
+                    sliderWidth={sliderWidth}
+                    itemWidth={itemWidth}
+                    firstItem={1}
+                    inactiveSlideScale={1}
+                    inactiveSlideOpacity={1}
+                    enableMomentum={false}
+                    containerCustomStyle={styles.slider}
+                    contentContainerCustomStyle={styles.sliderContainer}
+                    showsHorizontalScrollIndicator={false}
+                    snapOnAndroid={true}
+                    removeClippedSubviews={false}
+                >
+                    { this.getSlides(ENTRIES1) }
+                </Carousel>
 
         )
     }
