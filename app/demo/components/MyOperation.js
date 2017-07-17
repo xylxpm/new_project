@@ -47,7 +47,7 @@ class MyOperation extends Component {
                             style={{ color: colors.yellow,}}
                         />
                         <View style={[styles.rowRight]}>
-                            <Text style={{flex:1}}>我的课程</Text>
+                            <Text style={{flex:1}}>我的路径</Text>
                             <Ionicons
                                 name={'ios-arrow-forward'}
                                 size={26}
@@ -63,7 +63,7 @@ class MyOperation extends Component {
                             style={{ color: colors.green,}}
                         />
                         <View style={[styles.rowRight]}>
-                            <Text style={{flex:1}}>我的小主</Text>
+                            <Text style={{flex:1}}>我的课表</Text>
                             <Ionicons
                                 name={'ios-arrow-forward'}
                                 size={26}
@@ -79,7 +79,7 @@ class MyOperation extends Component {
                             style={{ color: colors.pink,}}
                         />
                         <View style={[styles.rowRight,styles.nob]}>
-                            <Text style={{flex:1}}>我的奖章</Text>
+                            <Text style={{flex:1}}>我的订单</Text>
                             <Ionicons
                                 name={'ios-arrow-forward'}
                                 size={26}
