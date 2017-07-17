@@ -14,11 +14,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import colors from './baseComponents/Colors';
 
-import Feedback from './pages/Feedback';
-import Category from './pages/Category';
-import Customer from './pages/Customer';
-import Main from './pages/Main';
-import Splash from './pages/Splash';
+import Feedback from './pages/Other/Feedback';
+import Category from './pages/Category/Category';
+import Customer from './pages/Customer/Customer';
+import Main from './pages/Main/Main';
+import Splash from './pages/Other/Splash';
 
 
 const TabContainer = TabNavigator(

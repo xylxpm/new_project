@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 
 
-import MyInfo from '../components/MyInfo';
-import MyInfoBtn from '../components/MyInfoBtn';
-import MyOperation from '../components/MyOperation';
+import MyInfo from '../../components/MyInfo';
+import MyInfoBtn from '../../components/MyInfoBtn';
+import MyOperation from '../../components/MyOperation';
 
 class  Customer extends Component {
 

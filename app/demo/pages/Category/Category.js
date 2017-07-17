@@ -6,7 +6,7 @@ import React, {Component, PropTypes} from 'react';
 import {
     StyleSheet, Text, View, Button, Image, Platform, Alert, ScrollView
 } from 'react-native';
-import colors from '../baseComponents/Colors';
+import colors from '../../baseComponents/Colors';
 
 let lists = [
     {

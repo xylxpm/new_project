@@ -14,14 +14,14 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import colors from '../baseComponents/Colors';
+import colors from '../../baseComponents/Colors';
 
-import MySwiper from '../components/MySwiper';
-import MyMenuBtn from '../components/MyMenuBtn';
-import MyCardList from '../components/MyCardList';
-import MyHorCardList from '../components/MyHorCardList';
-import MyCatSwiper from '../components/MyCatSwiper';
-import MyTitle from '../components/MyTitle';
+import MySwiper from '../../components/MySwiper';
+import MyMenuBtn from '../../components/MyMenuBtn';
+import MyCardList from '../../components/MyCardList';
+import MyHorCardList from '../../components/MyHorCardList';
+import MyCatSwiper from '../../components/MyCatSwiper';
+import MyTitle from '../../components/MyTitle';
 
 
 class Main extends Component {
