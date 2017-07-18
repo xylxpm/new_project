@@ -13,6 +13,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import colors from './baseComponents/Colors';
 
+import Login from './pages/Login/Login';
+
 import Main from './pages/Main/Main';
 import Main_Combat from './pages/Main/Main_Combat'
 import Main_Discover from './pages/Main/Main_Discover'
@@ -20,14 +22,15 @@ import Main_Path from './pages/Main/Main_Path'
 import Main_Questions from './pages/Main/Main_Questions'
 import Main_Notes from './pages/Main/Main_Notes'
 
-
 import Category from './pages/Category/Category';
 import Category_List from './pages/Category/Category_List';
 import Category_Detail from './pages/Category/Category_Detail';
 
-import Feedback from './pages/Other/Feedback';
 import Customer from './pages/Customer/Customer';
 
+import Feedback from './pages/Other/Feedback';
+
+import Splash from './pages/Other/Splash';
 
 const TabContainer = TabNavigator({
         Main: {
@@ -109,8 +112,14 @@ const TabContainer = TabNavigator({
 
 
 const App = StackNavigator({
+    // Login: {
+    //     screen: Login,
+    // },
     Home: {
         screen: TabContainer,
+    },
+    Splash: {
+        screen: Splash,
     },
     Main_Combat: {
         screen: Main_Combat,
@@ -151,11 +160,11 @@ const App = StackNavigator({
     }
 });
 
-const styles = StyleSheet.create({
-    container: {
-        marginTop: Platform.OS === 'ios' ? 20 : 0,
-    },
-});
+// const styles = StyleSheet.create({
+//     container: {
+//         marginTop: Platform.OS === 'ios' ? 20 : 0,
+//     },
+// });
 
 
 export default App;
