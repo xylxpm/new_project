@@ -1,14 +1,14 @@
 /**
  * 入口
  */
-import React, { Component } from 'react';
-import { Platform} from 'react-native';
+import React, {Component} from 'react';
+import {Platform} from 'react-native';
 import {
     StackNavigator,
     TabNavigator,
     addNavigationHelpers
 } from 'react-navigation';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -34,10 +34,23 @@ import Feedback from './pages/Other/Feedback';
 
 import Splash from './pages/Other/Splash';
 
+
+const CustomerStack = StackNavigator({
+    Customer: {
+        screen: Customer,
+    },
+    Login: {
+        screen: Login,
+    }
+}, {
+    mode: 'modal',
+});
+
 export const TabContainer = TabNavigator({
         Main: {
             screen: Main,
             navigationOptions: {
+
                 tabBarIcon: ({tintColor, focused}) => (
                     <Ionicons
                         name={focused ? 'ios-home' : 'ios-home-outline'}
@@ -72,10 +85,10 @@ export const TabContainer = TabNavigator({
             }
         },
         Customer: {
-            screen: Customer,
+            screen: CustomerStack,
 
             navigationOptions: {
-                header: null,
+
                 tabBarIcon: ({tintColor, focused}) => (
                     <Ionicons
                         name={focused ? 'ios-people' : 'ios-people-outline'}
@@ -113,14 +126,7 @@ export const TabContainer = TabNavigator({
 );
 
 
-export const  MyApp = StackNavigator({
-    // Login: {
-    //     screen: Login,
-    // },
-    // Detail:{
-    //     screen:Login_2
-    // },
-
+export const MyApp = StackNavigator({
     Home: {
         screen: TabContainer,
     },
@@ -151,7 +157,7 @@ export const  MyApp = StackNavigator({
 }, {
     headerMode: 'screen',
     navigationOptions: {
-        headerBackTitle:null,
+        headerBackTitle: null,
         headerStyle: {
             backgroundColor: colors.appColor,
             elevation: 0,
@@ -166,7 +172,7 @@ export const  MyApp = StackNavigator({
     }
 });
 
-const AppWithNavigationState = ({ dispatch, nav }) => (
+const AppWithNavigationState = ({dispatch, nav}) => (
     <MyApp navigation={addNavigationHelpers({ dispatch, state: nav })}/>
 );
 

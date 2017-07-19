@@ -24,10 +24,12 @@ import MyCatSwiper from '../../components/MyCatSwiper';
 import MyTitle from '../../components/MyTitle';
 
 
+
 class Main extends Component {
 
     static navigationOptions = ({navigation}) => ({
         title: '喵主页',
+
         headerLeft: (<Ionicons
             name={'ios-search'}
             size={26}
