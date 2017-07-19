@@ -1,13 +1,14 @@
 /**
  * 入口
  */
-import React from 'react';
-import {Button, Platform, ScrollView, StyleSheet} from 'react-native';
+import React, { Component } from 'react';
+import { Platform} from 'react-native';
 import {
     StackNavigator,
     TabNavigator,
     addNavigationHelpers
 } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -32,7 +33,7 @@ import Feedback from './pages/Other/Feedback';
 
 import Splash from './pages/Other/Splash';
 
-const TabContainer = TabNavigator({
+export const TabContainer = TabNavigator({
         Main: {
             screen: Main,
             navigationOptions: {
@@ -111,7 +112,7 @@ const TabContainer = TabNavigator({
 );
 
 
-const App = StackNavigator({
+export const  MyApp = StackNavigator({
     // Login: {
     //     screen: Login,
     // },
@@ -160,14 +161,18 @@ const App = StackNavigator({
     }
 });
 
-// const styles = StyleSheet.create({
-//     container: {
-//         marginTop: Platform.OS === 'ios' ? 20 : 0,
-//     },
-// });
+const AppWithNavigationState = ({ dispatch, nav }) => (
+    <MyApp navigation={addNavigationHelpers({ dispatch, state: nav })}/>
+);
+
+const mapStateToProps = state => ({
+    nav: state.nav,
+});
 
 
-export default App;
+//export default App;
+
+export default connect(mapStateToProps)(AppWithNavigationState);
 
 
 

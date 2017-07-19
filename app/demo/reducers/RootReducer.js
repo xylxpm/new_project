@@ -3,11 +3,13 @@
  */
 import { combineReducers } from 'redux';
 import userReducer from './userReducer';
+import nav from './StackReducer';
 
 
 //取决于这里你加入了多少 reducer
 const RootReducer = combineReducers({
-    userReducer
+    userReducer:userReducer,
+    nav
 });
 
 export default RootReducer;

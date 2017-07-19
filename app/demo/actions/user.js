@@ -3,7 +3,7 @@
  */
 
 import {AlertIOS} from 'react-native';
-import * as TYPES from './types';
+import * as TYPES from './ActionTypes';
 
 let textUser = {
     'name': '馒头',

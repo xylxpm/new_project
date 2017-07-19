@@ -2,7 +2,7 @@
  * 对每个传过来的action进行switch，每个action都需要返回一个state对象
  */
 
-import * as TYPES from '../actions/types';
+import * as TYPES from '../actions/ActionTypes';
 
 const initialState = {
     isLoggedIn: false,
@@ -10,7 +10,7 @@ const initialState = {
     status: null
 };
 
-export default function user(state = initialState, action) {
+export default function userReducer(state = initialState, action) {
 
     switch (action.type){
         case TYPES.LOGGED_DOING:
