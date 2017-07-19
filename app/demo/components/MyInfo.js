@@ -17,7 +17,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 class MyInfo extends Component {
     constructor(props) {
-        super(props)
+        super(props) ;
     }
 
     render() {
