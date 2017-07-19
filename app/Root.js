@@ -18,20 +18,23 @@ export default class Root extends Component {
 
     render() {
         return (
-            !this.state.isLogin ?
-                <Provider store={store}>
-                    <App />
-                </Provider>
-                :
-                <View style={{marginTop:30}}>
-                    <Text onPress={()=>{
-                        this.setState({
-                            isLogin:true
-                        })
-                    }}>
-                        点我登录
-                    </Text>
-                </View>
+            <Provider store={store}>
+                <App />
+            </Provider>
+            // !this.state.isLogin ?
+            //     <Provider store={store}>
+            //         <App />
+            //     </Provider>
+            //     :
+            //     <View style={{marginTop:30}}>
+            //         <Text onPress={()=>{
+            //             this.setState({
+            //                 isLogin:true
+            //             })
+            //         }}>
+            //             点我登录
+            //         </Text>
+            //     </View>
         );
     }
 };

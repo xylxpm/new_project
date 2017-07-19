@@ -14,7 +14,7 @@ class Category_List extends Component{
         super(props)
     }
     static navigationOptions = ({navigation}) => ({
-        title: '课程的列表',
+        title: navigation.state.params.title
 
     })
 
@@ -22,7 +22,8 @@ class Category_List extends Component{
     render(){
         return(
             <View style={styles.flex}>
-                <Text>课程的列表</Text>
+                <Text>title:{this.props.navigation.state.params.title}</Text>
+                <Text>id:{this.props.navigation.state.params.id}</Text>
             </View>
         )
     }
