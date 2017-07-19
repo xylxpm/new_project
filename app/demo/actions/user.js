@@ -3,7 +3,7 @@
  */
 
 import {AlertIOS} from 'react-native';
-import * as TYPES from './ActionTypes';
+import * as TYPES from '../constant/ActionTypes';
 
 let textUser = {
     'name': '馒头',
@@ -17,28 +17,33 @@ let skipUser = {
     'avatar': 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489943576131&di=3b6f187f402a106feec9eade686fb990&imgtype=0&src=http%3A%2F%2F5.595818.com%2F2014%2Fpic%2F000%2F364%2F883525f3226887a0ad8ce65848c51999.jpg',
 };
 
-export function logIn(opt) {
+// login
+export function logIn(opt){
     return (dispatch) => {
         dispatch({'type': TYPES.LOGGED_DOING});
         let inner_get = fetch('http://www.baidu.com')
-            .then((res) => {
+            .then((res)=>{
                 dispatch({'type': TYPES.LOGGED_IN, user: testUser});
-            }).catch((e) => {
+            }).catch((e)=>{
                 AlertIOS.alert(e.message);
                 dispatch({'type': TYPES.LOGGED_ERROR, error: e});
             });
     }
-
 }
 
-export function skipLogin() {
+
+
+// skip login
+export function skipLogin(){
     return {
         'type': TYPES.LOGGED_IN,
-        'user': skipUser
+        'user': skipUser,
     }
 }
 
-export function logOut() {
+
+// logout
+export function logOut(){
     return {
         'type': TYPES.LOGGED_OUT
     }

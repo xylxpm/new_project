@@ -16,6 +16,7 @@ import colors from './baseComponents/Colors';
 
 import Login from './pages/Login/Login';
 
+
 import Main from './pages/Main/Main';
 import Main_Combat from './pages/Main/Main_Combat'
 import Main_Discover from './pages/Main/Main_Discover'
@@ -116,6 +117,10 @@ export const  MyApp = StackNavigator({
     // Login: {
     //     screen: Login,
     // },
+    // Detail:{
+    //     screen:Login_2
+    // },
+
     Home: {
         screen: TabContainer,
     },
