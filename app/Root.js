@@ -1,12 +1,11 @@
-import React, {Component} from 'react';
-import {
-    AppRegistry,
+import { AppRegistry,View,Text ,} from 'react-native';
+import React, { Component } from 'react';
+import {Provider}from 'react-redux';
+import configureStore from './demo/store/configureStore';
 
-} from 'react-native';
+const store = configureStore();
 
 import App from './demo/App';
-
-
 
 
 export default class Root extends Component {
@@ -15,12 +14,28 @@ export default class Root extends Component {
         this.state = {
         }
     }
+
+
     render() {
         return (
-                <App></App>
-        )
+            !this.state.isLogin ?
+                <Provider store={store}>
+                    <App />
+                </Provider>
+                :
+                <View style={{marginTop:30}}>
+                    <Text onPress={()=>{
+                        this.setState({
+                            isLogin:true
+                        })
+                    }}>
+                        点我登录
+                    </Text>
+                </View>
+        );
     }
-}
+};
 
 AppRegistry.registerComponent('new_project', () => Root);
+
 
