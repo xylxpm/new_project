@@ -21,6 +21,7 @@ class MyOperation extends Component {
     }
 
     render() {
+
         return (
             <View style={[styles.flex]}>
                 <View style={[styles.flexb]}>
@@ -89,8 +90,6 @@ class MyOperation extends Component {
                     </View>
                 </View>
 
-
-
                 <View style={[styles.flexb,styles.mb]}>
                     <View style={[styles.flexDRow]}>
                         <Ionicons
@@ -124,6 +123,10 @@ class MyOperation extends Component {
 
 
                 </View>
+
+
+                <Text style={styles.logoutBtn} onPress={()=>{alert('退出登录')}}>退出登录</Text>
+
             </View>
         )
     }
@@ -169,6 +172,19 @@ const styles = StyleSheet.create({
     },
     nob: {
         borderBottomWidth: 0,
+    },
+    logoutBtn:{
+        flex: 1,
+        fontSize: 14,
+        padding: 10,
+        borderColor:colors.introduce,
+        borderWidth:1,
+        borderRadius:1,
+        marginLeft:10,
+        marginRight:10,
+        backgroundColor:colors.white,
+        color:colors.appColor,
+        textAlign:'center'
     }
 })
 

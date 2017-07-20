@@ -11,7 +11,7 @@ import {
 import MyInfo from '../../components/MyInfo';
 import MyInfoBtn from '../../components/MyInfoBtn';
 import MyOperation from '../../components/MyOperation';
-import colors from '../../baseComponents/Colors';
+
 
 class  Customer extends Component {
 
@@ -25,23 +25,12 @@ class  Customer extends Component {
     }
 
     render() {
-        const { navigate } = this.props.navigation;
+
         return (
             <ScrollView style={styles.container}>
-                <MyInfo></MyInfo>
-                <MyInfoBtn></MyInfoBtn>
-                <MyOperation></MyOperation>
-                <Text style={styles.logoutBtn} onPress={()=>{alert('退出登录')}}>退出登录</Text>
-                <Text style={styles.logoutBtn} onPress={() => {
-                    navigate('Login',{
-                        callback: (data)=>{
-                            this.setState({
-                                data:data
-                            })
-                        },
-                        title:'登录'
-                    });
-                }}>登录</Text>
+                <MyInfo navigation={this.props.navigation}></MyInfo>
+                <MyInfoBtn navigation={this.props.navigation}></MyInfoBtn>
+                <MyOperation navigation={this.props.navigation}></MyOperation>
             </ScrollView>
         )
     }
@@ -58,19 +47,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         padding: 5,
         textAlignVertical: 'top'
-    },
-    logoutBtn:{
-        flex: 1,
-        fontSize: 14,
-        padding: 10,
-        borderColor:colors.introduce,
-        borderWidth:1,
-        borderRadius:1,
-        marginLeft:10,
-        marginRight:10,
-        backgroundColor:colors.white,
-        color:colors.appColor,
-        textAlign:'center'
     }
 })
 

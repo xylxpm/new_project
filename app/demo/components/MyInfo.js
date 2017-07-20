@@ -3,8 +3,8 @@
  */
 import React, {Component} from 'react';
 import {
-    TouchableNativeFeedback,
     TouchableHighlight,
+    TouchableOpacity,
     StyleSheet,
     Platform,
     Image,
@@ -17,10 +17,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 class MyInfo extends Component {
     constructor(props) {
-        super(props) ;
+        super(props);
+
+        this.state = {}
     }
 
-    render() {
+    _renderLogin = () => {
         return (
             <View style={styles.flex}>
                 <View style={styles.infocontainer}>
@@ -55,6 +57,28 @@ class MyInfo extends Component {
             </View>
         )
     }
+
+    _renderNoLogin = () => {
+        return (
+            <View style={styles.flex}>
+                <View style={styles.infocontainer2}>
+                    <TouchableOpacity   activeOpacity={0.9} onPress={() => this.props.navigation.navigate('Login')}>
+                    <Image
+                        source={{ uri: 'http://img.mp.itc.cn/upload/20160511/75173ff5bd664ea58d08b85e55294155_th.jpg' }}
+                        style={styles.headimage2}/>
+                    <Text style={styles.infoname2}>点击登录</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
+
+
+    render() {
+        return (
+            this._renderNoLogin()
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -69,7 +93,15 @@ const styles = StyleSheet.create({
         paddingRight: 25,
         paddingBottom: 15,
     },
-
+    infocontainer2: {
+        flexDirection: 'column',
+        paddingTop: 25,
+        paddingLeft: 25,
+        paddingRight: 25,
+        paddingBottom: 15,
+        alignItems:'center',
+        justifyContent:'center'
+    },
     headimage: {
         resizeMode: 'cover',
         borderRadius: 26,
@@ -77,9 +109,20 @@ const styles = StyleSheet.create({
         height: 52,
         marginRight: 25
     },
+    headimage2: {
+        resizeMode: 'cover',
+        borderRadius: 26,
+        width: 52,
+        height: 52,
+    },
+    infoname2: {
+        color: colors.white,
+        fontSize: 12,
+        paddingTop: 8,
+    },
     infoname: {
         color: colors.white,
-        fontSize: 16,
+        fontSize: 14,
         lineHeight: 24
     },
     infoword1: {
@@ -87,7 +130,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         marginTop: 6
     },
-    infowordlist:{
+    infowordlist: {
         flexDirection: 'row',
         paddingBottom: 15,
 
@@ -104,7 +147,7 @@ const styles = StyleSheet.create({
     infoword3: {
         color: colors.white,
         fontSize: 14,
-        marginLeft:3
+        marginLeft: 3
     },
 })
 
