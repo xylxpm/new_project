@@ -5,7 +5,7 @@
 import {AlertIOS} from 'react-native';
 import * as TYPES from '../constant/ActionTypes';
 
-let textUser = {
+let testUser = {
     'name': '馒头',
     'age': '2',
     'avatar': 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489943540744&di=50d6a12eecaad024fc3d661dbc8555e8&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fbaike%2Fpic%2Fitem%2F9f510fb30f2442a71525d087d543ad4bd11302ec.jpg'
@@ -35,10 +35,12 @@ export function logIn(opt){
 
 // skip login
 export function skipLogin(){
+
     return {
         'type': TYPES.LOGGED_IN,
         'user': skipUser,
     }
+
 }
 
 

@@ -14,16 +14,25 @@ import {
 
 import colors from '../baseComponents/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { connect } from 'react-redux';
+
+import * as USER from '../actions/user';
 
 class MyInfo extends Component {
 
     constructor(props) {
         super(props);
-
+        const {routes} = this.props;
+        console.log('+++++++++++++++++++++++');
+        console.log(routes);
+        console.log('+++++++++++++++++++++++');
         this.state = {
-            isLogin:false
+            isLoggedIn:false
         }
+
     }
+
+
 
     _renderLogin = () => {
         return (
@@ -80,7 +89,7 @@ class MyInfo extends Component {
     render() {
         return (
             <View>
-            { this.state.isLogin ?   this._renderLogin()  : this._renderNoLogin() }
+            { this.state.isLoggedIn ?   this._renderLogin()  : this._renderNoLogin() }
             </View>
         );
     }
@@ -156,4 +165,12 @@ const styles = StyleSheet.create({
     },
 })
 
-export default MyInfo
+
+export default connect((state) => {
+    const { userReducer } = state;
+    const routes  = state.nav.routes;
+    return {
+        userReducer,
+        routes
+    };
+})(MyInfo)

@@ -9,7 +9,7 @@ import nav from './StackReducer';
 
 //取决于这里你加入了多少 reducer
 const RootReducer = combineReducers({
-    ShiTuReducer:ShiTuReducer,
+    //ShiTuReducer:ShiTuReducer,
     userReducer:userReducer,
     nav
 });

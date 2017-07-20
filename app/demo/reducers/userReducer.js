@@ -11,8 +11,8 @@ const initialState = {
     status: null,
 };
 
-export default function user(state=initialState, action){
-
+export default function userReducer(state=initialState, action){
+    console.log(action);
     switch(action.type){
         case TYPES.LOGGED_DOING:
             return {
@@ -46,5 +46,5 @@ export default function user(state=initialState, action){
         default:
             return state;
     }
-
+    console.log(state);
 }

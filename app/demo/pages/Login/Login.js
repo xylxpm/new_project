@@ -6,23 +6,22 @@ import {
     AppRegistry,
     StyleSheet,
     View,
-    AsyncStorage,
     Text,
     TextInput,
     TouchableOpacity,
     Image,
     Dimensions
 } from 'react-native';
-import {Sae, Makiko} from 'react-native-textinput-effects';
 
 
 import colors from '../../baseComponents/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import {connect} from 'react-redux';
+import {skipLogin} from '../../actions/user';
 
 let {height, width} = Dimensions.get('window');
 
-export default class Login extends Component {
+class Login extends Component {
 
     static navigationOptions = ({navigation}) => ({
         header: null,
@@ -31,6 +30,7 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props);
+        const {routes} = this.props;
         this.state = {
             loginMode: true,
         }
@@ -71,13 +71,20 @@ export default class Login extends Component {
                         style={[styles.input]}
                         underlineColorAndroid={'transparent'}
                     />
-                    <Text style={styles.commBtn} >登录</Text>
-                    <Text style={styles.commBtn2} >游客登录</Text>
+                    <Text style={styles.commBtn}>登录</Text>
+                    <TouchableOpacity  activeOpacity={0.8}  onPress={()=>{  this._LoginForSkip();  }}>
+                        <Text style={styles.commBtn2}>游客登录</Text>
+                    </TouchableOpacity>
                     <Text style={styles.titleword2} onPress={()=>this.setState({   loginMode:false,  })}>没账号？去注册</Text>
                 </Image>
 
             </View>
         )
+    }
+
+    _LoginForSkip(){
+        this.props.skipLogin();
+        this.props.navigation.goBack()
     }
 
     //注册界面
@@ -121,7 +128,7 @@ export default class Login extends Component {
                         style={[styles.input]}
                         underlineColorAndroid={'transparent'}
                     />
-                    <Text style={styles.commBtn} >注册</Text>
+                    <Text style={styles.commBtn}>注册</Text>
                     <Text style={styles.titleword2} onPress={()=>this.setState({  loginMode:true,  })}>有账号？去登录</Text>
                 </Image>
             </View>
@@ -139,6 +146,16 @@ export default class Login extends Component {
     }
 
 }
+
+
+export default connect((state) => {
+    const {userReducer} = state;
+    const routes = state.nav.routes;
+    return {
+        userReducer,
+        routes
+    };
+}, {skipLogin})(Login)
 
 
 const styles = StyleSheet.create({
@@ -169,7 +186,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontSize: 16,
         textAlign: 'center',
-        marginTop:50
+        marginTop: 50
     },
     closeicon: {
         color: colors.white,
@@ -187,24 +204,24 @@ const styles = StyleSheet.create({
         marginBottom: 2,
         backgroundColor: 'rgba(255, 255, 255, 0.2)'
     },
-    commBtn:{
+    commBtn: {
         fontSize: 16,
-        borderRadius:1,
-        margin:10,
-        backgroundColor:colors.appColor,
-        color:colors.white,
-        textAlign:'center',
-        height:40,
-        lineHeight:40
+        borderRadius: 1,
+        margin: 10,
+        backgroundColor: colors.appColor,
+        color: colors.white,
+        textAlign: 'center',
+        height: 40,
+        lineHeight: 40
     },
-    commBtn2:{
+    commBtn2: {
         fontSize: 16,
-        margin:10,
+        margin: 10,
         backgroundColor: 'transparent',
-        color:colors.white,
-        textAlign:'center',
-        height:40,
-        lineHeight:40
+        color: colors.white,
+        textAlign: 'center',
+        height: 40,
+        lineHeight: 40
     }
 
 });
