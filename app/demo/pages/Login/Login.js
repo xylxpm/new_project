@@ -26,21 +26,8 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props);
-        let {state} = this.props.navigation;
         this.state = {
-            title: state.title,
-            userNameStatus:true,
-            passWordStatus:true,
-            verifyStatus:true,
-            loginMode:true,
-            numberColor:'#4ECBFC',
-            normalColor:'black',
-            verifyText : '获取验证码',
-            phoneNumber:'',
-            verifyNumber:'',
-            info:{
-                name:'测试',
-            }
+            loginMode: true,
         }
     }
 
@@ -72,70 +59,25 @@ export default class Login extends Component {
         )
     };
 
-    _renderNumber = () => {
-        return (
-            <View style={{marginTop:0}}>
-                <RTTextInput placeholder="手机号"
-                             status={this.state.userNameStatus}
-                             onChangeText={(text) =>this._usernameJudge(text)}
-                             ref={(input) => this._usernameInput = input}
-                             textInputRef='textInput'
-                             iconName='md-person'
-                             defaultValue={this.state.phoneNumber}
-                />
-                <View style={{flexDirection:'row'}}>
-                    <RTTextInput placeholder="验证码"
-                                 status={this.state.verifyStatus}
-                                 onChangeText={(text) => this._verifyJudge(text)}
-                                 iconName='md-lock'
-                                 defaultValue={this.state.verifyNumber}
-                                 keyboardType={'numeric'}
-                    />
-                    <TouchableOpacity style={styles.verifyView}
-                                      activeOpacity={0.7}
-                                      onPress={this._sendVerify}
-                    >
-                        <Text>{this.state.verifyText}</Text>
-                    </TouchableOpacity>
-                </View>
-                <Text style={{marginTop:10}} onPress={()=>{
-                        this._passwordInput.refs.textInput.clear();
-                    }}/>
-                <TouchableOpacity style={styles.loginStyle} onPress={this._login}>
-                    <Text style={{fontSize:16}}>
-                        登录
-                    </Text>
-                </TouchableOpacity>
 
+    //登录界面
+    _renderLogin = () => {
+        return (
+            <View>
+                <Text>~~~~~~~~~~~这里登录</Text>
+                <Text onPress={()=>this.setState({   loginMode:false,  })}>去注册</Text>
+                <Text onPress={() => this.props.navigation.goBack()}>关闭</Text>
             </View>
         )
     }
 
-    _renderLogin = () => {
+    //注册界面
+    _renderRegister = () => {
         return (
-            <View style={styles.loginViewStyle}>
-                <TouchableOpacity style={styles.quickLoginStyle}
-                                  activeOpacity={0.9}
-                                  onPress={()=>this.setState({
-                                      loginMode:true,
-                                      numberColor:'#4ECBFC',
-                                      normalColor:'black',
-                                  })}
-                >
-                    <Text style={[styles.quickText,{color:this.state.numberColor}]}>快捷登录</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.normalLoginStyle}
-                                  activeOpacity={0.9}
-                                  onPress={()=>this.setState({
-                                      loginMode:false,
-                                      numberColor:'black',
-                                      normalColor:'#4ECBFC',
-                                  })}
-                >
-                    <Text style={[styles.normalText,{color:this.state.normalColor}]}>普通登录</Text>
-                </TouchableOpacity>
-
+            <View>
+                <Text>~~~~~~~~~~~~注册界面</Text>
+                <Text onPress={()=>this.setState({  loginMode:true,  })}>去登录</Text>
+                <Text onPress={() => this.props.navigation.goBack()}>关闭</Text>
             </View>
         )
     }
@@ -144,11 +86,7 @@ export default class Login extends Component {
         let {state} = this.props.navigation;
         return (
             <View style={styles.container}>
-                {this._renderLogin()}
-                {this.state.loginMode ?
-                    this._renderNumber()
-                    : this._renderAccount()
-                }
+                {this.state.loginMode ? this._renderLogin() : this._renderRegister()  }
             </View>
         );
     }
@@ -215,8 +153,3 @@ const styles = StyleSheet.create({
 
 });
 
-
-Login.PropTypes = {
-    navigate: React.PropTypes.object,
-    closeClick: React.PropTypes.object,
-};

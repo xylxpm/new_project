@@ -125,8 +125,9 @@ class MyOperation extends Component {
                 </View>
 
 
-                <Text style={styles.logoutBtn} onPress={()=>{alert('退出登录')}}>退出登录</Text>
+                {/*<Text style={styles.logoutBtn} onPress={()=>{alert('退出登录')}}>退出登录</Text>*/}
 
+                {/*<Text style={styles.logoutBtn}   onPress={() => this.props.navigation.navigate('Login')} >登录</Text>*/}
             </View>
         )
     }

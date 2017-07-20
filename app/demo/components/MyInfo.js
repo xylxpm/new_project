@@ -16,10 +16,13 @@ import colors from '../baseComponents/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 class MyInfo extends Component {
+
     constructor(props) {
         super(props);
 
-        this.state = {}
+        this.state = {
+            isLogin:false
+        }
     }
 
     _renderLogin = () => {
@@ -64,7 +67,7 @@ class MyInfo extends Component {
                 <View style={styles.infocontainer2}>
                     <TouchableOpacity   activeOpacity={0.9} onPress={() => this.props.navigation.navigate('Login')}>
                     <Image
-                        source={{ uri: 'http://img.mp.itc.cn/upload/20160511/75173ff5bd664ea58d08b85e55294155_th.jpg' }}
+                        source={{ uri: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489943619895&di=ffad3f79e684e0f540dad44cc2636f06&imgtype=0&src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fblog%2F201511%2F14%2F20151114035004_vFC2J.jpeg' }}
                         style={styles.headimage2}/>
                     <Text style={styles.infoname2}>点击登录</Text>
                     </TouchableOpacity>
@@ -76,7 +79,9 @@ class MyInfo extends Component {
 
     render() {
         return (
-            this._renderNoLogin()
+            <View>
+            { this.state.isLogin ?   this._renderLogin()  : this._renderNoLogin() }
+            </View>
         );
     }
 }
