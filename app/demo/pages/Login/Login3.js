@@ -53,25 +53,32 @@ export default class Login extends Component {
                     />
                     <Text style={styles.titleword}>欢迎登陆</Text>
 
-                    <TextInput
-                        autoFocus={true}
-                        blurOnSubmit={true}
-                        placeholderTextColor="#cccccc"
-                        placeholder="用户名"
+
+                    <Sae
+                        label={'用户名'}
+                        labelStyle={{ color: 'rgba(255, 255, 255, 0.6)' }}
+                        iconClass={FontAwesomeIcon}
+                        iconName={'address-book'}
+                        iconColor={'rgba(255, 255, 255, 0.6)'}
+                        autoCapitalize={'none'}
+                        autoCorrect={false}
                         style={[styles.input]}
-                        underlineColorAndroid={'transparent'}
+                    />
+                    <Sae
+                        label={'密码'}
+                        labelStyle={{ color: 'rgba(255, 255, 255, 0.6)' }}
+                        iconClass={FontAwesomeIcon}
+                        iconName={'pencil'}
+                        iconColor={'rgba(255, 255, 255, 0.6)'}
+                        autoCapitalize={'none'}
+                        autoCorrect={false}
+                        password={true}
+                        style={[styles.input]}
                     />
 
-                    <TextInput
-                        autoFocus={true}
-                        blurOnSubmit={true}
-                        password={true}
-                        placeholderTextColor="#cccccc"
-                        placeholder="密码"
-                        style={[styles.input]}
-                        underlineColorAndroid={'transparent'}
-                    />
-                    <Text style={styles.commBtn} >登录</Text>
+
+
+
                     <Text style={styles.titleword2} onPress={()=>this.setState({   loginMode:false,  })}>没账号？去注册</Text>
                 </Image>
 
@@ -134,8 +141,7 @@ const styles = StyleSheet.create({
         color: colors.white,
         backgroundColor: 'transparent',
         fontSize: 16,
-        textAlign: 'center',
-        marginTop:50
+        textAlign: 'center'
     },
     closeicon: {
         color: colors.white,
@@ -144,25 +150,31 @@ const styles = StyleSheet.create({
         top: 25,
         backgroundColor: 'transparent',
     },
+
     input: {
+        height: 46,
+        width: width-30,
+        // color: 'rgba(255, 255, 255, 0.8)',
+        // fontSize: 14,
+        // padding: 15,
+        // marginBottom: 5,
+        marginLeft: 15,
+        marginRight: 15,
+        // borderColor:'red',
+        // borderWidth:1
+        // backgroundColor: 'rgba(255, 255, 255, 0.2)'
+    },
+
+    input2: {
         height: 46,
         width: width,
         color: colors.white,
         fontSize: 14,
         padding: 15,
-        marginBottom: 2,
+        marginBottom: 5,
         backgroundColor: 'rgba(255, 255, 255, 0.2)'
     },
-    commBtn:{
-        fontSize: 16,
-        borderRadius:1,
-        margin:10,
-        backgroundColor:colors.appColor,
-        color:colors.white,
-        textAlign:'center',
-        height:40,
-        lineHeight:40
-    }
+
 
 });
 
