@@ -72,6 +72,7 @@ export default class Login extends Component {
                         underlineColorAndroid={'transparent'}
                     />
                     <Text style={styles.commBtn} >登录</Text>
+                    <Text style={styles.commBtn2} >游客登录</Text>
                     <Text style={styles.titleword2} onPress={()=>this.setState({   loginMode:false,  })}>没账号？去注册</Text>
                 </Image>
 
@@ -86,9 +87,42 @@ export default class Login extends Component {
                 <Image
                     source={require('../../img/4.jpeg')}
                     style={styles.image}>
+                    <Ionicons
+                        onPress={() => this.props.navigation.goBack()}
+                        name={'ios-close'}
+                        size={40}
+                        style={styles.closeicon }
+                    />
                     <Text style={styles.titleword}>欢迎注册</Text>
-                    <Text onPress={()=>this.setState({  loginMode:true,  })}>有账号？去登录</Text>
-                    <Text onPress={() => this.props.navigation.goBack()}>关闭</Text>
+                    <TextInput
+                        autoFocus={true}
+                        blurOnSubmit={true}
+                        placeholderTextColor="#cccccc"
+                        placeholder="用户名"
+                        style={[styles.input]}
+                        underlineColorAndroid={'transparent'}
+                    />
+
+                    <TextInput
+                        autoFocus={true}
+                        blurOnSubmit={true}
+                        password={true}
+                        placeholderTextColor="#cccccc"
+                        placeholder="密码"
+                        style={[styles.input]}
+                        underlineColorAndroid={'transparent'}
+                    />
+                    <TextInput
+                        autoFocus={true}
+                        blurOnSubmit={true}
+                        password={true}
+                        placeholderTextColor="#cccccc"
+                        placeholder="验证密码"
+                        style={[styles.input]}
+                        underlineColorAndroid={'transparent'}
+                    />
+                    <Text style={styles.commBtn} >注册</Text>
+                    <Text style={styles.titleword2} onPress={()=>this.setState({  loginMode:true,  })}>有账号？去登录</Text>
                 </Image>
             </View>
 
@@ -158,6 +192,15 @@ const styles = StyleSheet.create({
         borderRadius:1,
         margin:10,
         backgroundColor:colors.appColor,
+        color:colors.white,
+        textAlign:'center',
+        height:40,
+        lineHeight:40
+    },
+    commBtn2:{
+        fontSize: 16,
+        margin:10,
+        backgroundColor: 'transparent',
         color:colors.white,
         textAlign:'center',
         height:40,
