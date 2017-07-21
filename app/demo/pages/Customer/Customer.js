@@ -14,6 +14,7 @@ import MyOperation from '../../components/MyOperation';
 import colors from '../../baseComponents/Colors';
 
 import {connect} from 'react-redux';
+import {skipLogin} from '../../actions/UserAction';
 
 class  Customer extends Component {
 
@@ -23,7 +24,12 @@ class  Customer extends Component {
     })
 
     constructor(props) {
+
         super(props);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { skip } = this.props.userReducer;
     }
 
     render() {
@@ -65,4 +71,15 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Customer;
+// export default Customer;
+
+
+
+export default connect((state) => {
+    const {userReducer} = state;
+    const routes = state.nav.routes;
+    return {
+        userReducer,
+        routes
+    };
+}, {skipLogin})(Customer)

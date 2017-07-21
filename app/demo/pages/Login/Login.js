@@ -94,8 +94,12 @@ class Login extends Component {
     }
 
     _LoginForSkip(){
+        let opt = {
+            'name': "1111",
+            'password': "22222",
+        };
+        this.props.skipLogin(opt);
 
-        this.props.skipLogin();
         this.props.navigation.goBack()
     }
 

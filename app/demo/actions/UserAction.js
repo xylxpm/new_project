@@ -34,7 +34,7 @@ export function logIn(opt){
 
 
 // skip login
-export function skipLogin(){
+export function skipLogin(opt){
     console.log('skipLogin方法被执行');
     return {
         'type': TYPES.LOGGED_IN,
