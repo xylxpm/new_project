@@ -3,7 +3,6 @@
  */
 import React, {Component} from 'react';
 import {
-    TouchableHighlight,
     StyleSheet,
     Button,
     Image,
@@ -12,21 +11,38 @@ import {
 } from 'react-native';
 
 import MyMenuBtn from '../components/MyMenuBtn';
+import {connect} from 'react-redux';
 
-class MyInfoBtn extends Component{
-    constructor(props){
+import * as USER from '../actions/UserAction';
+
+class MyInfoBtn extends Component {
+
+    constructor(props) {
         super(props)
+
     }
 
+    _showLoginView = () => {
+        this.props.navigation.navigate('Login')
+    }
 
+    _showInfo = () => {
+        alert('me')
+    }
 
-    render(){
-        return(
+    _click = (otp) => {
+        const UserReducer = this.props.UserReducer;
+        UserReducer.isLoggedIn ? this._showInfo() : this._showLoginView()
+    }
+
+    render() {
+
+        return (
             <View style={styles.btnlists}>
-                <MyMenuBtn title="我的课程" icon="ios-cart"></MyMenuBtn>
-                <MyMenuBtn title="我的实战" icon="ios-game-controller-b"></MyMenuBtn>
-                <MyMenuBtn title="我的猿问" icon="ios-locate"></MyMenuBtn>
-                <MyMenuBtn title="我的手记" icon="ios-megaphone"></MyMenuBtn>
+                <MyMenuBtn title="我的课程" icon="ios-cart" onPress={ this._click.bind(this)}></MyMenuBtn>
+                <MyMenuBtn title="我的实战" icon="ios-game-controller-b" onPress={ this._click.bind(this)}></MyMenuBtn>
+                <MyMenuBtn title="我的猿问" icon="ios-locate" onPress={ this._click.bind(this)}></MyMenuBtn>
+                <MyMenuBtn title="我的手记" icon="ios-megaphone" onPress={ this._click.bind(this)}></MyMenuBtn>
             </View>
         )
     }
@@ -44,6 +60,12 @@ const styles = StyleSheet.create({
 })
 
 
+export default connect((state) => {
+    const {UserReducer} = state;
+    const routes = state.nav.routes;
+    return {
+        UserReducer,
+        routes
+    };
+}, {USER})(MyInfoBtn)
 
-
-export default MyInfoBtn

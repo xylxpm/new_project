@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         paddingTop: 25,
         paddingLeft: 25,
         paddingRight: 25,
-        paddingBottom: 15,
+        paddingBottom: 25,
         alignItems: 'center',
         justifyContent: 'center'
     },
