@@ -7,13 +7,11 @@ import * as TYPES from '../constant/ActionTypes';
 
 let testUser = {
     'name': '馒头',
-    'age': '2',
     'avatar': 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489943540744&di=50d6a12eecaad024fc3d661dbc8555e8&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fbaike%2Fpic%2Fitem%2F9f510fb30f2442a71525d087d543ad4bd11302ec.jpg'
 };
 
 let skipUser = {
-    'name': 'cookie',
-    'age': 3,
+    'name': '游客',
     'avatar': 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489943576131&di=3b6f187f402a106feec9eade686fb990&imgtype=0&src=http%3A%2F%2F5.595818.com%2F2014%2Fpic%2F000%2F364%2F883525f3226887a0ad8ce65848c51999.jpg',
 };
 
@@ -34,7 +32,7 @@ export function logIn(opt){
 
 
 // skip login
-export function skipLogin(opt){
+export function skipLogin(){
     console.log('skipLogin方法被执行');
     return {
         'type': TYPES.LOGGED_IN,

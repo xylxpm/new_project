@@ -30,20 +30,11 @@ class Login extends Component {
 
     constructor(props) {
         super(props);
-        const {routes} = this.props;
+
         this.state = {
             loginMode: true,
         }
     }
-
-    // componentDidMount() {
-    //     this.props.skipLogin();
-    //     const {routes} = this.props;
-    // }
-    //
-    // componentWillReceiveProps(nextProps) {
-    //     const { skip } = this.props.userReducer;
-    // }
 
 
     //登录界面
@@ -94,11 +85,8 @@ class Login extends Component {
     }
 
     _LoginForSkip(){
-        let opt = {
-            'name': "1111",
-            'password': "22222",
-        };
-        this.props.skipLogin(opt);
+
+        this.props.skipLogin();
 
         this.props.navigation.goBack()
     }

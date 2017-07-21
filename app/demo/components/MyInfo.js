@@ -83,11 +83,11 @@ class MyInfo extends Component {
 
 
     render() {
-        const {userReducer} = this.props.userReducer;
-        console.log(userReducer);
+        const userReducer = this.props.userReducer;
+       console.log(userReducer);
         return (
             <View>
-                { this.state.isLoggedIn ? this._renderLogin() : this._renderNoLogin() }
+                { userReducer.isLoggedIn ? this._renderLogin() : this._renderNoLogin() }
             </View>
         );
     }
