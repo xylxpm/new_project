@@ -22,12 +22,7 @@ class MyInfo extends Component {
 
     constructor(props) {
         super(props);
-        const {routes} = this.props;
-        this.state = {
-            isLoggedIn: false
-        }
     }
-
 
     _renderLogin = (otp) => {
         return (
@@ -83,7 +78,6 @@ class MyInfo extends Component {
 
     render() {
         const UserReducer = this.props.UserReducer;
-        console.log(UserReducer);
         return (
             <View>
                 { UserReducer.isLoggedIn ? this._renderLogin(UserReducer) : this._renderNoLogin(UserReducer) }

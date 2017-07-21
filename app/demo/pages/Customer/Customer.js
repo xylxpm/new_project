@@ -6,8 +6,6 @@ import React, {Component} from 'react';
 import {
     StyleSheet, TextInput, View, Button,ScrollView,Text
 } from 'react-native';
-
-
 import MyInfo from '../../components/MyInfo';
 import MyInfoBtn from '../../components/MyInfoBtn';
 import MyOperation from '../../components/MyOperation';
@@ -33,7 +31,6 @@ class  Customer extends Component {
     }
 
     render() {
-        const { navigate } = this.props.navigation;
         return (
             <ScrollView style={styles.container}>
                 <MyInfo navigation={this.props.navigation}></MyInfo>
@@ -42,7 +39,6 @@ class  Customer extends Component {
             </ScrollView>
         )
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -70,10 +66,6 @@ const styles = StyleSheet.create({
         textAlign:'center'
     }
 })
-
-// export default Customer;
-
-
 
 export default connect((state) => {
     const {UserReducer} = state;

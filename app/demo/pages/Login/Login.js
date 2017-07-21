@@ -17,7 +17,7 @@ import {
 import colors from '../../baseComponents/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
-import {skipLogin} from '../../actions/UserAction';
+import {skipLogin,logIn} from '../../actions/UserAction';
 
 let {height, width} = Dimensions.get('window');
 
@@ -158,7 +158,7 @@ export default connect((state) => {
         UserReducer,
         routes
     };
-}, {skipLogin})(Login)
+}, {skipLogin,logIn})(Login)
 
 
 const styles = StyleSheet.create({

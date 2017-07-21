@@ -3,25 +3,31 @@
  */
 import React, {Component} from 'react';
 import {
-    TouchableNativeFeedback,
-    TouchableHighlight,
+    TouchableOpacity,
     StyleSheet,
     Platform,
     Image,
-    Text,Switch,
+    Text, Switch,
     View
 } from 'react-native';
 
 import colors from '../baseComponents/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {connect} from 'react-redux';
+
+import {logOut} from '../actions/UserAction';
 
 class MyOperation extends Component {
     constructor(props) {
         super(props)
     }
 
-    render() {
+    componentWillReceiveProps(nextProps) {
+        const {skip} = this.props.UserReducer;
+    }
 
+    render() {
+        const UserReducer = this.props.UserReducer;
         return (
             <View style={[styles.flex]}>
                 <View style={[styles.flexb]}>
@@ -99,7 +105,7 @@ class MyOperation extends Component {
                         />
                         <View style={[styles.rowRight]}>
                             <Text style={{flex:1}}>夜间模式</Text>
-                            <Switch style={{marginRight:15}} ></Switch>
+                            <Switch style={{marginRight:15}}></Switch>
                         </View>
                     </View>
 
@@ -124,18 +130,22 @@ class MyOperation extends Component {
 
                 </View>
 
+                { UserReducer.isLoggedIn ?
+                    <TouchableOpacity activeOpacity={0.9} onPress={()=>{this.props.logOut()}}>
+                        <Text style={styles.logoutBtn} >退出登录</Text>
+                    </TouchableOpacity>
+                    : null}
 
-                {/*<Text style={styles.logoutBtn} onPress={()=>{alert('退出登录')}}>退出登录</Text>*/}
-
-                {/*<Text style={styles.logoutBtn}   onPress={() => this.props.navigation.navigate('Login')} >登录</Text>*/}
             </View>
         )
     }
-    click(){}
+
+    click() {
+    }
 }
 
 const styles = StyleSheet.create({
-    flex:{
+    flex: {
         flex: 1,
     },
     flexb: {
@@ -174,19 +184,27 @@ const styles = StyleSheet.create({
     nob: {
         borderBottomWidth: 0,
     },
-    logoutBtn:{
+    logoutBtn: {
         flex: 1,
         fontSize: 14,
         padding: 10,
-        borderColor:colors.introduce,
-        borderWidth:1,
-        borderRadius:1,
-        marginLeft:10,
-        marginRight:10,
-        backgroundColor:colors.white,
-        color:colors.appColor,
-        textAlign:'center'
+        borderColor: colors.introduce,
+        borderWidth: 1,
+        borderRadius: 1,
+        marginLeft: 10,
+        marginRight: 10,
+        backgroundColor: colors.white,
+        color: colors.appColor,
+        textAlign: 'center'
     }
 })
 
-export default MyOperation
+
+export default connect((state) => {
+    const {UserReducer} = state;
+    const routes = state.nav.routes;
+    return {
+        UserReducer,
+        routes
+    };
+}, {logOut})(MyOperation)
