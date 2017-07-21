@@ -13,6 +13,8 @@ import MyInfoBtn from '../../components/MyInfoBtn';
 import MyOperation from '../../components/MyOperation';
 import colors from '../../baseComponents/Colors';
 
+import {connect} from 'react-redux';
+
 class  Customer extends Component {
 
     static navigationOptions = ({navigation}) => ({
