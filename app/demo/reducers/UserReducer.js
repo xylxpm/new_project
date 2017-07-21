@@ -11,8 +11,8 @@ const initialState = {
     status: null,
 };
 
-export default function userReducer(state=initialState, action){
-    console.log(action.type);
+export default function UserReducer(state=initialState, action){
+
     switch(action.type){
         case TYPES.LOGGED_DOING:
             return Object.assign({}, state, {
@@ -42,4 +42,5 @@ export default function userReducer(state=initialState, action){
         default:
             return state;
     }
+    console.log(state);
 }

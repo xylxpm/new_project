@@ -29,7 +29,7 @@ class  Customer extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { skip } = this.props.userReducer;
+        const { skip } = this.props.UserReducer;
     }
 
     render() {
@@ -76,10 +76,10 @@ const styles = StyleSheet.create({
 
 
 export default connect((state) => {
-    const {userReducer} = state;
+    const {UserReducer} = state;
     const routes = state.nav.routes;
     return {
-        userReducer,
+        UserReducer,
         routes
     };
 }, {skipLogin})(Customer)

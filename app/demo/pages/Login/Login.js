@@ -152,10 +152,10 @@ class Login extends Component {
 
 
 export default connect((state) => {
-    const {userReducer} = state;
+    const {UserReducer} = state;
     const routes = state.nav.routes;
     return {
-        userReducer,
+        UserReducer,
         routes
     };
 }, {skipLogin})(Login)

@@ -29,17 +29,16 @@ class MyInfo extends Component {
     }
 
 
-    _renderLogin = () => {
-
+    _renderLogin = (otp) => {
         return (
             <View style={styles.flex}>
                 <View style={styles.infocontainer}>
                     <Image
-                        source={{ uri: 'http://img.mp.itc.cn/upload/20160511/75173ff5bd664ea58d08b85e55294155_th.jpg' }}
+                        source={{ uri: otp.user.avatar }}
                         style={styles.headimage}/>
                     <View>
-                        <Text style={styles.infoname}>cookie</Text>
-                        <Text style={styles.infoword1}>学习时长 211小时   |   经验  21342</Text>
+                        <Text style={styles.infoname}>{otp.user.name}</Text>
+                        <Text style={styles.infoword1}>学习时长 0小时   |   经验  0</Text>
                     </View>
                     <Ionicons
                         name={'ios-mail'}
@@ -50,15 +49,15 @@ class MyInfo extends Component {
                 <View style={[styles.infowordlist]}>
                     <View style={[styles.flex,styles.center]}>
                         <Text style={styles.infoword2}>关注</Text>
-                        <Text style={styles.infoword3}>4</Text>
+                        <Text style={styles.infoword3}>0</Text>
                     </View>
                     <View style={[styles.flex,styles.center]}>
                         <Text style={styles.infoword2}>粉丝</Text>
-                        <Text style={styles.infoword3}>3</Text>
+                        <Text style={styles.infoword3}>0</Text>
                     </View>
                     <View style={[styles.flex,styles.center]}>
                         <Text style={styles.infoword2}>积分</Text>
-                        <Text style={styles.infoword3}>444</Text>
+                        <Text style={styles.infoword3}>0</Text>
                     </View>
                 </View>
 
@@ -66,7 +65,7 @@ class MyInfo extends Component {
         )
     }
 
-    _renderNoLogin = () => {
+    _renderNoLogin = (otp) => {
         return (
             <View style={styles.flex}>
                 <View style={styles.infocontainer2}>
@@ -83,11 +82,11 @@ class MyInfo extends Component {
 
 
     render() {
-        const userReducer = this.props.userReducer;
-       console.log(userReducer);
+        const UserReducer = this.props.UserReducer;
+        console.log(UserReducer);
         return (
             <View>
-                { userReducer.isLoggedIn ? this._renderLogin() : this._renderNoLogin() }
+                { UserReducer.isLoggedIn ? this._renderLogin(UserReducer) : this._renderNoLogin(UserReducer) }
             </View>
         );
     }
@@ -165,10 +164,10 @@ const styles = StyleSheet.create({
 
 
 export default connect((state) => {
-    const {userReducer} = state;
+    const {UserReducer} = state;
     const routes = state.nav.routes;
     return {
-        userReducer,
+        UserReducer,
         routes
     };
 }, {USER})(MyInfo)
