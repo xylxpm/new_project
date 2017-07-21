@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 import {
-    StyleSheet, TextInput, View, Button
+    StyleSheet, Text, View
 } from 'react-native';
 
 class  Splash extends Component {
@@ -19,6 +19,7 @@ class  Splash extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <Text>启动页面</Text>
             </View>
         )
     }

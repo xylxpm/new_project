@@ -117,7 +117,7 @@ class MyOperation extends Component {
                             style={{ color: colors.green,}}
                         />
                         <View style={[styles.rowRight,styles.nob]}>
-                            <Text style={{flex:1}} onPress={this.click.bind(this)}>系统设置</Text>
+                            <Text style={{flex:1}} >系统设置</Text>
 
                             <Ionicons
                                 name={'ios-arrow-forward'}
@@ -140,8 +140,6 @@ class MyOperation extends Component {
         )
     }
 
-    click() {
-    }
 }
 
 const styles = StyleSheet.create({
