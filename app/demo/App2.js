@@ -1,134 +1,42 @@
 /**
- * 入口
+ * Created by Rabbit on 2017/7/1.
  */
-import React from 'react';
-import { Button, Platform, ScrollView, StyleSheet } from 'react-native';
-import {StackNavigator, TabNavigator} from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {
+    StackNavigator,
+    addNavigationHelpers
+} from 'react-navigation';
+
+import React, { Component } from 'react';
 
 
-import colors from './baseComponents/Colors';
+import Home from './pages/Login2/Login';
+import Detail from './pages/Login2/Login_2';
 
-import Feedback from './pages/Other/Feedback';
-import Category from './pages/Category/Category';
-import Customer from './pages/Customer/Customer';
-import Main from './pages/Main/Main';
-import Splash from './pages/Other/Splash';
+import { connect } from 'react-redux';
 
 
-const TabContainer = TabNavigator(
-    {
-    Main: {
-        screen: Main,
+export const MyApp = StackNavigator({
+    Home:{
+        screen:Home,
         navigationOptions:{
-            tabBarIcon: ({ tintColor, focused }) => (
-                <Ionicons
-                    name={focused ? 'ios-home' : 'ios-home-outline'}
-                    size={26}
-                    style={{ color: tintColor }}
-                />
-            ),
+            headerTitle:'首页'
         }
     },
-    Category: {
-        screen: Category,
+    Detail:{
+        screen:Detail,
         navigationOptions:{
-            tabBarIcon: ({ tintColor, focused }) => (
-                <Ionicons
-                    name={focused ? 'ios-cube' : 'ios-cube-outline'}
-                    size={26}
-                    style={{ color: tintColor }}
-                />
-            ),
+            headerTitle:'详情页'
         }
-    },
-    Feedback: {
-        screen: Feedback,
-        navigationOptions:{
-            tabBarIcon: ({ tintColor, focused }) => (
-                <Ionicons
-                    name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
-                    size={26}
-                    style={{ color: tintColor }}
-                />
-            ),
-        }
-    },
-    Customer: {
-        screen: Customer,
-
-        navigationOptions:{
-            header:null,
-            tabBarIcon: ({ tintColor, focused }) => (
-                <Ionicons
-                    name={focused ? 'ios-people' : 'ios-people-outline'}
-                    size={26}
-                    style={{ color: tintColor }}
-                />
-            ),
-        },
-
     }
-},
-    {
-    lazy: true,
-    tabBarOptions: {
-        animationEnabled:false,
-        activeTintColor: colors.appColor,
-        style: {
-            height : Platform.OS === 'ios' ? 50 : 65,
-            backgroundColor:colors.white
-        },
-        activeBackgroundColor:colors.white,
-        inactiveBackgroundColor:colors.white,
-        inactiveTintColor:colors.tintColor,
-        swipeEnabled:true,
-        showIcon:true,
-        indicatorStyle:{
-            height:0,
-        },
-        labelStyle:{
-            fontSize:12
+},{
+});
 
-        }
-    },
-    tabBarPosition:'bottom'
-}
+const AppWithNavigationState = ({ dispatch, nav }) => (
+    <MyApp navigation={addNavigationHelpers({ dispatch, state: nav })}/>
 );
 
-const App = StackNavigator({
-
-    Home: {
-        screen: TabContainer,
-
-    }
-}, {
-    headerMode: 'screen',
-    navigationOptions: {
-        headerStyle: {
-            backgroundColor: colors.appColor,
-            elevation:0,
-            height:60
-        },
-        headerTitleStyle: {
-            color: colors.white,
-            fontSize: 20,
-            alignSelf:'center'
-        },
-        headerTintColor: colors.white
-    }
+const mapStateToProps = state => ({
+    nav: state.nav,
 });
 
-const styles = StyleSheet.create({
-    container: {
-        marginTop: Platform.OS === 'ios' ? 20 : 0,
-    },
-});
-
-
-
-export default App;
-
-
-
-
+export default connect(mapStateToProps)(AppWithNavigationState);

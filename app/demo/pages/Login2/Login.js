@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import { userToken } from '../../actions/UserToken';
+import { userToken } from '../../actions/UserAction';
 
 
 class Login extends Component {

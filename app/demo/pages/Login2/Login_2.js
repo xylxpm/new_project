@@ -11,7 +11,7 @@ import {
 
 import { connect } from 'react-redux';
 
-import { getUserToken } from '../../actions/UserToken';
+import { getUserToken } from '../../actions/UserAction';
 
 class Detail extends Component {
 

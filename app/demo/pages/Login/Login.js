@@ -17,7 +17,7 @@ import {
 import colors from '../../baseComponents/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
-import {skipLogin} from '../../actions/user';
+import {skipLogin} from '../../actions/UserAction';
 
 let {height, width} = Dimensions.get('window');
 
@@ -36,9 +36,19 @@ class Login extends Component {
         }
     }
 
+    // componentDidMount() {
+    //     this.props.skipLogin();
+    //     const {routes} = this.props;
+    // }
+    //
+    // componentWillReceiveProps(nextProps) {
+    //     const { skip } = this.props.userReducer;
+    // }
+
 
     //登录界面
     _renderLogin = () => {
+
         return (
             <View style={styles.container}>
                 <Image
@@ -71,6 +81,7 @@ class Login extends Component {
                         style={[styles.input]}
                         underlineColorAndroid={'transparent'}
                     />
+
                     <Text style={styles.commBtn}>登录</Text>
                     <TouchableOpacity  activeOpacity={0.8}  onPress={()=>{  this._LoginForSkip();  }}>
                         <Text style={styles.commBtn2}>游客登录</Text>
@@ -83,6 +94,7 @@ class Login extends Component {
     }
 
     _LoginForSkip(){
+
         this.props.skipLogin();
         this.props.navigation.goBack()
     }
@@ -137,7 +149,6 @@ class Login extends Component {
     }
 
     render() {
-        let {state} = this.props.navigation;
         return (
             <View style={styles.container}>
                 {this.state.loginMode ? this._renderLogin() : this._renderRegister()  }
@@ -161,6 +172,7 @@ export default connect((state) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+
         // backgroundColor: '#ccc',
     },
     image: {
@@ -169,8 +181,8 @@ const styles = StyleSheet.create({
         position: 'absolute', left: 0, right: 0, top: 0, bottom: 0,
         // alignItems: 'center',
         // justifyContent: 'center',
-        width: width,
-        height: height,
+        width: null,
+        height: null,
     },
     titleword: {
         alignItems: 'center',

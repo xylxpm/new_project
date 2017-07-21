@@ -14,27 +14,23 @@ import {
 
 import colors from '../baseComponents/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import * as USER from '../actions/user';
+import * as USER from '../actions/UserAction';
 
 class MyInfo extends Component {
 
     constructor(props) {
         super(props);
         const {routes} = this.props;
-        console.log('+++++++++++++++++++++++');
-        console.log(routes);
-        console.log('+++++++++++++++++++++++');
         this.state = {
-            isLoggedIn:false
+            isLoggedIn: false
         }
-
     }
 
 
-
     _renderLogin = () => {
+
         return (
             <View style={styles.flex}>
                 <View style={styles.infocontainer}>
@@ -74,11 +70,11 @@ class MyInfo extends Component {
         return (
             <View style={styles.flex}>
                 <View style={styles.infocontainer2}>
-                    <TouchableOpacity   activeOpacity={0.9} onPress={() => this.props.navigation.navigate('Login')}>
-                    <Image
-                        source={{ uri: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489943619895&di=ffad3f79e684e0f540dad44cc2636f06&imgtype=0&src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fblog%2F201511%2F14%2F20151114035004_vFC2J.jpeg' }}
-                        style={styles.headimage2}/>
-                    <Text style={styles.infoname2}>点击登录</Text>
+                    <TouchableOpacity activeOpacity={0.9} onPress={() => this.props.navigation.navigate('Login')}>
+                        <Image
+                            source={{ uri: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489943619895&di=ffad3f79e684e0f540dad44cc2636f06&imgtype=0&src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fblog%2F201511%2F14%2F20151114035004_vFC2J.jpeg' }}
+                            style={styles.headimage2}/>
+                        <Text style={styles.infoname2}>点击登录</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -87,9 +83,11 @@ class MyInfo extends Component {
 
 
     render() {
+        const {userReducer} = this.props.userReducer;
+        console.log(userReducer);
         return (
             <View>
-            { this.state.isLoggedIn ?   this._renderLogin()  : this._renderNoLogin() }
+                { this.state.isLoggedIn ? this._renderLogin() : this._renderNoLogin() }
             </View>
         );
     }
@@ -113,8 +111,8 @@ const styles = StyleSheet.create({
         paddingLeft: 25,
         paddingRight: 25,
         paddingBottom: 15,
-        alignItems:'center',
-        justifyContent:'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     headimage: {
         resizeMode: 'cover',
@@ -167,10 +165,10 @@ const styles = StyleSheet.create({
 
 
 export default connect((state) => {
-    const { userReducer } = state;
-    const routes  = state.nav.routes;
+    const {userReducer} = state;
+    const routes = state.nav.routes;
     return {
         userReducer,
         routes
     };
-})(MyInfo)
+}, {USER})(MyInfo)
