@@ -11,11 +11,19 @@ import {
     View,
     Button
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 class Feedback extends Component {
     static navigationOptions = ({navigation}) => ({
-        title: '喵列表'
+        title: '喵列表',
+        tabBarIcon: ({tintColor, focused}) => (
+            <Ionicons
+                name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
+                size={26}
+                style={{ color: tintColor }}
+            />
+        ),
     })
 
     constructor(props) {

@@ -7,6 +7,7 @@ import {
     StyleSheet, Text, View, Button, Image, Platform, Alert, ScrollView, TouchableOpacity
 } from 'react-native';
 import colors from '../../baseComponents/Colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 let lists = [
     {
@@ -150,14 +151,21 @@ class BtnList extends Component {
 class Category extends Component {
 
     static navigationOptions = ({navigation}) => ({
-        title: '喵课程'
+        title: '喵课程',
+        tabBarIcon: ({tintColor, focused}) => (
+            <Ionicons
+                name={focused ? 'ios-cube' : 'ios-cube-outline'}
+                size={26}
+                style={{ color: tintColor }}
+            />
+        ),
     })
 
     constructor(props) {
         super(props);
     }
 
-//
+
     renderExpenseItem(item, i) {
         return <BtnList key={i} detail={item} navigation={this.props.navigation}/>;
     }

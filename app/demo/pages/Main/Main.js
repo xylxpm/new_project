@@ -23,6 +23,8 @@ import MyHorCardList from '../../components/MyHorCardList';
 import MyCatSwiper from '../../components/MyCatSwiper';
 import MyTitle from '../../components/MyTitle';
 
+import {connect} from 'react-redux';
+import * as USER from '../../actions/UserAction';
 
 
 class Main extends Component {
@@ -41,13 +43,23 @@ class Main extends Component {
                 size={26}
                 style={{ color: colors.white,marginRight:10}}
             />
-        )
+        ),
+        tabBarIcon: ({tintColor, focused}) => (
+            <Ionicons
+                name={focused ? 'ios-home' : 'ios-home-outline'}
+                size={26}
+                style={{ color: tintColor }}
+            />
+        ),
     })
 
 
     constructor(props) {
         super(props);
-
+        // const UserReducer = this.props.UserReducer;
+        // if (!UserReducer.isLoggedIn) {
+        //     this.props.navigation.navigate('Login')
+        // }
     }
 
     render() {
@@ -55,11 +67,16 @@ class Main extends Component {
             <ScrollView style={[styles.flex,styles.main]}>
                 <MySwiper></MySwiper>
                 <View style={styles.btnlists}>
-                    <MyMenuBtn title="实战" icon="ios-cart" onPress={() => this.props.navigation.navigate('Main_Combat')}></MyMenuBtn>
-                    <MyMenuBtn title="路径" icon="ios-game-controller-b" onPress={() => this.props.navigation.navigate('Main_Path')}></MyMenuBtn>
-                    <MyMenuBtn title="猿问" icon="ios-locate" onPress={() => this.props.navigation.navigate('Main_Questions')}></MyMenuBtn>
-                    <MyMenuBtn title="手记" icon="ios-bonfire" onPress={() => this.props.navigation.navigate('Main_Notes')}></MyMenuBtn>
-                    <MyMenuBtn title="发现" icon="ios-megaphone" onPress={() => this.props.navigation.navigate('Main_Discover')}></MyMenuBtn>
+                    <MyMenuBtn title="实战" icon="ios-cart"
+                               onPress={() => this.props.navigation.navigate('Main_Combat')}></MyMenuBtn>
+                    <MyMenuBtn title="路径" icon="ios-game-controller-b"
+                               onPress={() => this.props.navigation.navigate('Main_Path')}></MyMenuBtn>
+                    <MyMenuBtn title="猿问" icon="ios-locate"
+                               onPress={() => this.props.navigation.navigate('Main_Questions')}></MyMenuBtn>
+                    <MyMenuBtn title="手记" icon="ios-bonfire"
+                               onPress={() => this.props.navigation.navigate('Main_Notes')}></MyMenuBtn>
+                    <MyMenuBtn title="发现" icon="ios-megaphone"
+                               onPress={() => this.props.navigation.navigate('Main_Discover')}></MyMenuBtn>
                 </View>
                 <MyCardList></MyCardList>
                 <MyHorCardList></MyHorCardList>
@@ -87,4 +104,13 @@ const styles = StyleSheet.create({
 
 })
 
-export default Main;
+// export default Main;
+
+export default connect((state) => {
+    const {UserReducer} = state;
+    const routes = state.nav.routes;
+    return {
+        UserReducer,
+        routes
+    };
+}, {USER})(Main)

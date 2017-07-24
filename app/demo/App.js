@@ -10,7 +10,6 @@ import {
 } from 'react-navigation';
 import {connect} from 'react-redux';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import colors from './baseComponents/Colors';
 
@@ -46,58 +45,35 @@ const CustomerStack = StackNavigator({
     mode: 'modal',
 });
 
+const MainStack = StackNavigator({
+    Main: {
+        screen: Main,
+        navigationOptions: {
+            header:null
+        }
+    },
+    Login: {
+        screen: Login,
+    }
+}, {
+    mode: 'modal',
+});
+
+
+
+
 export const TabContainer = TabNavigator({
         Main: {
             screen: Main,
-            navigationOptions: {
-
-                tabBarIcon: ({tintColor, focused}) => (
-                    <Ionicons
-                        name={focused ? 'ios-home' : 'ios-home-outline'}
-                        size={26}
-                        style={{ color: tintColor }}
-                    />
-                ),
-            }
         },
         Category: {
             screen: Category,
-            navigationOptions: {
-                tabBarIcon: ({tintColor, focused}) => (
-                    <Ionicons
-                        name={focused ? 'ios-cube' : 'ios-cube-outline'}
-                        size={26}
-                        style={{ color: tintColor }}
-                    />
-                ),
-            }
         },
         Feedback: {
             screen: Feedback,
-            navigationOptions: {
-                tabBarIcon: ({tintColor, focused}) => (
-                    <Ionicons
-                        name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
-                        size={26}
-                        style={{ color: tintColor }}
-                    />
-                ),
-            }
         },
         Customer: {
             screen: CustomerStack,
-
-            navigationOptions: {
-
-                tabBarIcon: ({tintColor, focused}) => (
-                    <Ionicons
-                        name={focused ? 'ios-people' : 'ios-people-outline'}
-                        size={26}
-                        style={{ color: tintColor }}
-                    />
-                ),
-            },
-
         }
     },
     {

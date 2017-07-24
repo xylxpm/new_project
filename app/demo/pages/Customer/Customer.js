@@ -10,6 +10,7 @@ import MyInfo from '../../components/MyInfo';
 import MyInfoBtn from '../../components/MyInfoBtn';
 import MyOperation from '../../components/MyOperation';
 import colors from '../../baseComponents/Colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {connect} from 'react-redux';
 import {skipLogin} from '../../actions/UserAction';
@@ -19,6 +20,13 @@ class  Customer extends Component {
     static navigationOptions = ({navigation}) => ({
         title:'喵窝',
         header: null,
+        tabBarIcon: ({tintColor, focused}) => (
+            <Ionicons
+                name={focused ? 'ios-people' : 'ios-people-outline'}
+                size={26}
+                style={{ color: tintColor }}
+            />
+        ),
     })
 
     constructor(props) {
