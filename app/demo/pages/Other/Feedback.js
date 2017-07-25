@@ -5,18 +5,18 @@
 import React, {Component} from 'react';
 import {
     View,
-    ListView,
-    Image,
     Text,
-    TouchableOpacity,
-    TouchableHighlight,
+    Image,
     StyleSheet,
-    Alert,
+    AsyncStorage,
+    Animated,
+    Easing,
     ScrollView,
-    Dimensions,
-    InteractionManager,
+    ListView,
+    ActivityIndicator,
     AppRegistry,
 } from 'react-native';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
 import * as USER from '../../actions/UserAction';
