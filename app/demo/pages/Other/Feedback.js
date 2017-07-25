@@ -4,26 +4,23 @@
 
 import React, {Component} from 'react';
 import {
-    AppRegistry,
-
-    StyleSheet,
-    Text,
     View,
-    Button,
-    ListView
+    ListView,
+    Image,
+    Text,
+    TouchableOpacity,
+    TouchableHighlight,
+    StyleSheet,
+    Alert,
+    ScrollView,
+    Dimensions,
+    InteractionManager,
+    AppRegistry,
 } from 'react-native';
-import RefreshableListView from 'react-native-refreshable-listview';
-import delay from 'react-native-refreshable-listview/lib/delay';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
 import * as USER from '../../actions/UserAction';
-
-var makeSequence = (n) => Array.apply(null, {length: n}).map((v, i) => i)
-
-var ds = new ListView.DataSource({
-    rowHasChanged: (r1, r2) => r1.text !== r2.text
-})
-
+import PullRefreshScrollView from 'react-native-pullrefresh-scrollview';
 
 class Feedback extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -39,50 +36,69 @@ class Feedback extends Component {
 
     constructor(props) {
         super(props);
+        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.data = ['有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊'];
+        this.state = {
+            dataSource: ds.cloneWithRows(this.data),
+        }
+    }
+
+    onRefresh(PullRefresh) {
+        console.log('refresh');
+        setTimeout(function () {
+            PullRefresh.onRefreshEnd();
+        }, 2000);
 
     }
 
-    getInitialState() {
-        var rows = makeSequence(100).map((n) => ({text: 'not refreshed '+n}))
-        return {dataSource: ds.cloneWithRows(rows)}
+    onLoadMore(PullRefresh) {
+        var self = this;
+        setTimeout(function () {
+            self.data = self.data.concat(['有种你滑我啊(新)']);
+            self.setState({
+                dataSource: self.state.dataSource.cloneWithRows(self.data)
+            });
+        }, 2000);
+        console.log('onLoadMore');
     }
 
-    reloadItems() {
-        return delay(1000).then(() => {
-            var rows = makeSequence(100).map((n) => ({text: 'refreshed '+n}))
-            this.setState({dataSource: ds.cloneWithRows(rows)})
-        })
-    }
-    renderItem(item) {
-        return (
-            <View style={{height: 40, backgroundColor: '#ffffff', borderWidth: 0.5, borderColor: '#d6d7da'}}>
-                <Text>
-                    {item.text}
-                </Text>
-            </View>
-        )
-    }
 
     render() {
         return (
-            <View style={{marginTop: 20}}>
-                <RefreshableListView
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderItem.bind(this)}
-                    loadData={this.reloadItems.bind(this)}
-                    refreshDescription="Refreshing items"
-                    refreshPrompt="Pull down to refresh"
-                />
-            </View>
+
+            <ListView
+
+                renderScrollComponent={(props) => <PullRefreshScrollView onRefresh={(PullRefresh)=>this.onRefresh(PullRefresh)} onLoadMore={(PullRefresh)=>this.onLoadMore(PullRefresh)} useLoadMore={1}{...props} />}
+
+                dataSource={this.state.dataSource}
+                renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
+                renderRow={(rowData) => <View style={styles.rowItem}><Text style={{fontSize:16}}>{rowData}</Text></View>}
+            />
         )
     }
 
 }
 
 
-const styles = StyleSheet.create(
-)
-
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
+    header: {
+        height: 64,
+        backgroundColor: '#293447',
+    },
+    rowItem: {
+        flex: 1,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    separator: {
+        height: 1,
+        backgroundColor: '#CCCCCC',
+    },
+});
 
 export default connect((state) => {
     const {UserReducer} = state;
