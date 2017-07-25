@@ -73,7 +73,10 @@ class Feedback extends Component {
 
             <ListView
 
-                renderScrollComponent={(props) => <PullRefreshScrollView onRefresh={(PullRefresh)=>this.onRefresh(PullRefresh)} onLoadMore={(PullRefresh)=>this.onLoadMore(PullRefresh)} useLoadMore={1}{...props} />}
+                renderScrollComponent={(props) => <PullRefreshScrollView
+                    onRefresh={(PullRefresh)=>this.onRefresh(PullRefresh)}
+                    onLoadMore={(PullRefresh)=>this.onLoadMore(PullRefresh)}
+                    useLoadMore={1}{...props} />}
 
                 dataSource={this.state.dataSource}
                 renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}

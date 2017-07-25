@@ -5,22 +5,155 @@
 import React, {Component} from 'react';
 import {
     View,
-    Text,
     Image,
-    StyleSheet,
-    AsyncStorage,
-    Animated,
-    Easing,
     ScrollView,
     ListView,
-    ActivityIndicator,
-    AppRegistry,
+    Text,
+    TouchableOpacity,
+    TextInput,
+    StyleSheet,
+    Animated,
+    Easing,
+    ActivityIndicator
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
 import * as USER from '../../actions/UserAction';
 import PullRefreshScrollView from 'react-native-pullrefresh-scrollview';
+
+class TestListView extends Component {
+    constructor(props) {
+        super(props);
+        this.tbvHeight = props.tbvHeight;
+        this.renderRowCallback = props.renderRowCallback;
+        this.networkParams = props.networkParams;
+        this.defaultPageItem = props.defaultPageItem; // 默认每一page能刷多少条，配合最后刷新
+        this.canLoadMore = true;
+
+        var ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2,
+        });
+        this.state = {
+            marginDistance: new Animated.Value(0),
+            dataSource: ds,
+            theNetworkData: [],
+            isLoadingMore: false,
+        };
+    }
+
+    getData() {
+        return this.state.theNetworkData;
+    }
+
+    _onRefresh(refresh) {
+        this._getRecord(1, refresh);
+    }
+
+    _onEndReached(event) {
+        if (this.tbvOffsetY > 5 && this.canLoadMore == true) {
+            this._getRecord(2, null);
+        }
+    }
+
+    _getRecord(type, refresh) {
+        if (type == 1) {
+            this.page = 1;
+            if (refresh == null) {
+            }
+        }
+        else {
+            if (this.state.isLoadingMore == true) {
+                return;
+            }
+            this.page++;
+            this.setState({isLoadingMore: true});
+        }
+        var body = null;
+        if (this.networkParams[1].indexOf("@") != -1) {
+            var bodyArr = this.networkParams[1].split("@");
+            var body = bodyArr[0] + this.page + bodyArr[1];
+        }
+        setTimeout(function () {
+            fetch(this.networkParams[0] + body)
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    if (refresh != undefined && refresh != null) {
+                        // refresh.onRefreshEnd();
+                    }
+                    else {
+                    }
+                    if (type == 2) {
+                        this.setState({isLoadingMore: false});
+                    }
+                    if (responseJson != undefined && responseJson != null) {
+                        if (responseJson.tracks.length > 0) {
+                            if (type == 1) {
+                                var temp = responseJson.tracks;
+                                temp.push("");
+                                this.setState({theNetworkData: temp});
+                            }
+                            else {
+                                var temp = this.state.theNetworkData;
+                                temp.pop();
+                                temp = temp.concat(responseJson.tracks);
+                                temp.push("");
+                                this.setState({theNetworkData: temp});
+                            }
+                            if (responseJson.tracks.length < this.defaultPageItem) {
+                                this.canLoadMore = false;
+                            }
+                            else {
+                                this.canLoadMore = true;
+                            }
+                        }
+                    }
+                    else {
+                        this.page--;
+                    }
+                })
+                .catch((error) => {
+                    this.page--;
+                    if (refresh != null) {
+                        refresh.onRefreshEnd();
+                    }
+                    else {
+                        Public.hideHUD();
+                    }
+                    if (type == 2) {
+                        this.setState({isLoadingMore: false});
+                    }
+                });
+        }.bind(this), 3000);
+    }
+
+    _renderRow(rowData, sectionId, rowId) {
+        if (rowId == this.state.theNetworkData.length - 1) {
+            return (<ActivityIndicator style={{height: 50}} animating={this.state.isLoadingMore} color="black"/>);
+        }
+        return this.renderRowCallback(rowData, sectionId, rowId);
+    }
+
+    render() {
+        return (
+            <ListView
+                ref={(ref) => this.tbv = ref}
+                renderScrollComponent={(props) => <PullRefreshScrollView onRefresh={(PullRefresh)=>this._onRefresh(PullRefresh)} {...props}     />}
+                dataSource={this.state.dataSource.cloneWithRows(this.state.theNetworkData)}
+                renderRow={(rowData, sectionId, rowId) => this._renderRow(rowData, sectionId, rowId)}
+                onEndReachedThreshold={200}
+                scrollEventThrottle={200}
+                onScroll={(event)=>this.tbvOffsetY = event.nativeEvent.contentOffset.y}
+                onEndReached={(event)=>this._onEndReached(event)}
+                enableEmptySections={true}
+                automaticallyAdjustContentInsets={false}
+                showsVerticalScrollIndicator={false}
+                style={{height: this.tbvHeight}}
+            >
+            </ListView>
+        );
+    }
+}
 
 class Feedback extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -36,77 +169,64 @@ class Feedback extends Component {
 
     constructor(props) {
         super(props);
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.data = ['有种你滑我啊', '有种你滑我啊', '有种你滑我啊','有种你滑我啊','有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊'];
-        this.state = {
-            dataSource: ds.cloneWithRows(this.data),
-        }
+        this.state = {};
     }
 
-    onRefresh(PullRefresh) {
-        console.log('refresh');
-        // var self = this;
-        setTimeout(function () {
-            // self.data = self.data.concat(['有种你滑我啊(下拉)']);
-            // self.setState({
-            //     dataSource: self.state.dataSource.cloneWithRows(self.data)
-            // });
-            PullRefresh.onRefreshEnd();
-        }, 2000);
+    _renderRow(rowData, sectionId, rowId) {
+        var time = rowData.time;
+        time = "2016-12-12";
+        var srorzcMonStr = "标题";
+        return (
+            <View style={{
+                height: 210,
+                padding: 15,
+                borderBottomWidth: 1,
+                borderBottomColor: 'black',
 
+            }}>
+                <Text style={{fontSize: 23}}>我是第:{rowId}</Text>
+                <View style={{
+                    flexDirection: 'row',
+                    flex: 1,
+                    justifyContent: 'space-around',
+                    alignItems: 'center'
+                }}>
+                    <View style={{alignItems: 'center'}}>
+                        <Text>交易金额</Text>
+                    </View>
+                    <View style={{alignItems: 'center'}}>
+                        <Text>冻结金额</Text>
+                    </View>
+                    <View style={{alignItems: 'center'}}>
+                        <Text>可用余额</Text>
+                    </View>
+                </View>
+                <View style={{alignItems: 'flex-end', flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <Text style={{color: 'gray',fontSize: 12}}>时间:{time}</Text>
+                </View>
+            </View>
+        );
     }
-
-    onLoadMore(PullRefresh) {
-        var self = this;
-        setTimeout(function () {
-            self.data = self.data.concat(['有种你滑我啊(更多)']);
-            self.setState({
-                dataSource: self.state.dataSource.cloneWithRows(self.data)
-            });
-        }, 2000);
-        console.log('onLoadMore');
-    }
-
 
     render() {
         return (
+            <View style={{flex: 1}}>
+                <TestListView tbvHeight={500}
+                              ref={(e)=>this.tbv = e}
+                              defaultPageItem={4}
+                              renderRowCallback={(rowData, sectionId, rowId)=>this._renderRow(rowData, sectionId, rowId)}
+                              networkParams={["http://v5.pc.duomi.com/search-ajaxsearch-searchall?", 'kw=相爱&pi=@&pz=4', "kFinancialRecords"]}
+                />
+            </View>
+        );
+    }
 
-            <ListView
-
-                renderScrollComponent={(props) => <PullRefreshScrollView onRefresh={(PullRefresh)=>this.onRefresh(PullRefresh)}
-              //  onLoadMore={(PullRefresh)=>this.onLoadMore(PullRefresh)}
-              //  useLoadMore={1}{...props}
-                />}
-
-                dataSource={this.state.dataSource}
-                renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
-                renderRow={(rowData) => <View style={styles.rowItem}><Text style={{fontSize:16}}>{rowData}</Text></View>}
-            />
-        )
+    componentDidMount() {
+        this.tbv._onRefresh(1, null);
     }
 
 }
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    header: {
-        height: 64,
-        backgroundColor: '#293447',
-    },
-    rowItem: {
-        flex: 1,
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    separator: {
-        height: 1,
-        backgroundColor: '#CCCCCC',
-    },
-});
 
 export default connect((state) => {
     const {UserReducer} = state;
