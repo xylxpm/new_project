@@ -37,7 +37,7 @@ class Feedback extends Component {
     constructor(props) {
         super(props);
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.data = ['有种你滑我啊', '有种你滑我啊', '有种你滑我啊','有种你滑我啊','有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊'];
+        this.data = ['有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊', '有种你滑我啊'];
         this.state = {
             dataSource: ds.cloneWithRows(this.data),
         }
@@ -51,7 +51,7 @@ class Feedback extends Component {
             // self.setState({
             //     dataSource: self.state.dataSource.cloneWithRows(self.data)
             // });
-            PullRefresh.onRefreshEnd();
+           PullRefresh.onRefreshEnd();
         }, 2000);
 
     }
@@ -59,7 +59,7 @@ class Feedback extends Component {
     onLoadMore(PullRefresh) {
         var self = this;
         setTimeout(function () {
-            self.data = self.data.concat(['有种你滑我啊(更多)']);
+            self.data = self.data.concat(['有种你滑我啊(上拉)']);
             self.setState({
                 dataSource: self.state.dataSource.cloneWithRows(self.data)
             });
@@ -73,10 +73,7 @@ class Feedback extends Component {
 
             <ListView
 
-                renderScrollComponent={(props) => <PullRefreshScrollView onRefresh={(PullRefresh)=>this.onRefresh(PullRefresh)}
-              //  onLoadMore={(PullRefresh)=>this.onLoadMore(PullRefresh)}
-              //  useLoadMore={1}{...props}
-                />}
+                renderScrollComponent={(props) => <PullRefreshScrollView onRefresh={(PullRefresh)=>this.onRefresh(PullRefresh)} onLoadMore={(PullRefresh)=>this.onLoadMore(PullRefresh)} useLoadMore={1}{...props} />}
 
                 dataSource={this.state.dataSource}
                 renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
