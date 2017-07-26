@@ -173,9 +173,6 @@ class Feedback extends Component {
     }
 
     _renderRow(rowData, sectionId, rowId) {
-        var time = rowData.time;
-        time = "2016-12-12";
-        var srorzcMonStr = "标题";
         return (
             <View style={{
                 height: 210,
@@ -201,9 +198,7 @@ class Feedback extends Component {
                         <Text>可用余额</Text>
                     </View>
                 </View>
-                <View style={{alignItems: 'flex-end', flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <Text style={{color: 'gray',fontSize: 12}}>时间:{time}</Text>
-                </View>
+
             </View>
         );
     }
